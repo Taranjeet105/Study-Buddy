@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    
+
+     <style>
+         
+      body {
+        background-image: url('https://www.how-to-study.com/images/study-skills-assessments.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+      }
+     </style>
+
+    <title>Hello, world!</title>
+  </head>
+
+  <body>
+  
+    
+    <%- include('partials/firstpagenavbar') %>
+   
+
+      
+<!-- Modal login -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/login" method="post" enctype="application/json">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+<!-- Modal singup -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Register</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <form id="myform">
+
+          <div class="mb-3">
+            <label for="SignInUserName" class="form-label" >First Name</label>
+            <input name="SignInUserName" type="text" class="form-control" id="SignInUserName" aria-describedby="emailHelp2">
+           
+          </div>
+
+          <div class="mb-3">
+            <label for="SignInLUserName" class="form-label" >Last Name</label>
+            <input name="SignInLUserName" type="text" class="form-control" id="SignInLUserName" aria-describedby="emailHelp2">
+         
+          </div>
+
+          <div class="mb-3">
+            <label for="SignInUserAge" class="form-label" >Age</label>
+            <input name="SignInUserAge" type="number" class="form-control" id="SignInUserAge" aria-describedby="emailHelp2">
+         
+          </div>
+
+
+          <div class="mb-3">
+            <label for="SignInUserGender" class="form-label" >Gender</label>
+            <br>
+            Male
+            <input name="SignInUserGender" type="radio"  id="SignInUserGenderMale" value='Male' >
+            Female
+            <input name="SignInUserGender" type="radio"  id="SignInUserGenderFemale" value="Female" >
+          </div>
+
+
+          <div class="mb-3">
+            <label for="SignInUserPhone" class="form-label" >Phone</label>
+            <input name="SignInUserPhone" type="tel" class="form-control" id="SignInUserPhone" aria-describedby="emailHelp2">
+            <div id="emailHelp2" class="form-text">We'll never share your Mobile Number with anyone else.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="SignInEmail" class="form-label" >Email address</label>
+            <input name="SignInEmail" type="email" class="form-control" id="SignInEmail" aria-describedby="emailHelp2">
+            <div id="emailHelp2" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="SignInpassword" class="form-label" >Password</label>
+            <input name="SignInpassword" type="password" class="form-control" id="SignInpassword">
+          </div>
+
+          <div class="mb-3">
+            <label for="cSignInpassword" class="form-label" >Confirm Password</label>
+            <input name="cSignInpassword" type="password" class="form-control" id="cSignInpassword">
+          </div>
+
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<script>
+
+document.getElementById("myform").onsubmit=(e)=>{
+               
+               e.preventDefault()
+                let  url=("http://localhost:3000/SignIn")
+                let data=new URLSearchParams()
+               
+                for(const pair of new FormData(e.target) ){
+                    console.log(pair[0],pair[1])
+                    data.append(pair[0],pair[1])
+                }
+                fetch(url,{
+                    method:"post",
+                    body:data,
+                  
+                }).then(res=>res.json())
+                .then(result=>{
+                    console.log(result)
+                    if(result.status){
+                      location.reload()
+                    }
+                })
+                
+            }
+
+</script>
+     
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    -->
+  
+
+  </body>
+</html>
+
+
+
