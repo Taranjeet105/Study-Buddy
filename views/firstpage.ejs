@@ -155,9 +155,10 @@ document.getElementById("myform").onsubmit=(e)=>{
                 .then(result=>{
                     console.log(result)
                     if(result.status){
+                      alert("successfully registered")
                       location.reload()
                     }
-                })
+                }).catch(e=>console.log(e))
                 
             }
 
