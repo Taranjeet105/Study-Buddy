@@ -28,7 +28,7 @@ router.get('/',(req,res)=>{
             res.json({msg:"User Registered Succcessfully",status:true})
          }).catch((e)=>{
              console.log(e)
-             res.json({msg:"Email or phone already registered",status:false})
+             res.json({msg:"Email or phone already registered",status:e})
          })
 
     }else{

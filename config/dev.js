@@ -1,3 +1,3 @@
 module.exports={
-    mongoUrl:"mongodb://localhost:27017/studybuddy"
+    mongoUrl:"mongodb+srv://Taranjeet:swagjattda@cluster0.hfuxw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 }
