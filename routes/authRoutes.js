@@ -3,17 +3,14 @@ const mongoose=require('mongoose')
 const User=mongoose.model('User')
 const router=express.Router()
 const bcrypt=require('bcryptjs')
-const cookieParser=require("cookie-parser")
 app=express()
-app.use(express.json())
-app.use(cookieParser())
-
+app.use(express.urlencoded({extended:false}))
 router.get('/',(req,res)=>{
     res.render('firstpage')
 })
 
 router.get('/secret',(req,res)=>{
-    // console.log(req.cookies.jwt)   cause of error
+       console.log(req.cookies.jwt)
        res.render('secret')
    })
    
@@ -37,7 +34,7 @@ router.get('/secret',(req,res)=>{
          // res.cookie() function is used to set the cookie name to value.
          // the value parameter may be a string or object converted to json.
          // res.cookie(name,value,{expires:new Date(Date.now()+3000), httpOnly:true,secure:true});
-         res.cookie("jwt",token,{expires:new Date(Date.now()+600000), httpOnly:true});
+         res.cookie('jwt',token,{expires:new Date(Date.now()+600000), httpOnly:true,secure: false});
         //  res.cookie("jwt",token)
         
          user.save()
@@ -62,8 +59,8 @@ router.get('/secret',(req,res)=>{
         const isMatch= await bcrypt.compare(req.body.password,verifyUser.password)
 
         const token=verifyUser.generateAuthToken()
-        res.cookie("jwt",token,{expires:new Date(Date.now()+600000), httpOnly:true});
-    
+        res.cookie('jwt',token,{expires:new Date(Date.now()+600000), httpOnly:true,secure: false});
+        
         if(isMatch){
             res.render("homepage")
         }else{
