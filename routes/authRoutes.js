@@ -2,6 +2,7 @@ const express=require('express')
 const mongoose=require('mongoose')
 const User=mongoose.model('User')
 const router=express.Router()
+const auth=require('../middleware/auth')
 const bcrypt=require('bcryptjs')
 app=express()
 app.use(express.urlencoded({extended:false}))
@@ -9,8 +10,8 @@ router.get('/',(req,res)=>{
     res.render('firstpage')
 })
 
-router.get('/secret',(req,res)=>{
-       console.log(req.cookies.jwt)
+router.get('/secret',auth,(req,res)=>{   // auth is a middleware which verfies if user is authenticated or not
+    //    console.log(req.cookies.jwt)
        res.render('secret')
    })
    

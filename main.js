@@ -6,6 +6,7 @@ const mongoose=require('mongoose')
 const {mongoUrl}=require('./config/keys')
 const cors = require('cors');
 const app=express()
+
 const PORT= process.env.PORT || 3000
 app.use(cookieParser())
 require('./models/User')  // routes will come after this, because we are using models in routes
