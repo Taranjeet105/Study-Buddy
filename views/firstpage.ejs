@@ -140,7 +140,7 @@
 document.getElementById("myform").onsubmit=(e)=>{
                
                e.preventDefault()
-                let  url=("https://studdy-buddyy.herokuapp.com/SignIn")
+                let  url=("http://localhost:3000/SignIn")
                 let data=new URLSearchParams()
                
                 for(const pair of new FormData(e.target) ){
@@ -154,9 +154,11 @@ document.getElementById("myform").onsubmit=(e)=>{
                 }).then(res=>res.json())
                 .then(result=>{
                     console.log(result)
-                    if(result.status){
-                      alert("successfully registered")
+                    if(result.status==true){
+                      alert(result.msg)
                       location.reload()
+                    }else{
+                      alert(result.msg)
                     }
                 }).catch(e=>console.log(e))
                 
