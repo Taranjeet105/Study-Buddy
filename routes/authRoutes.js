@@ -11,12 +11,13 @@ router.get('/',(req,res)=>{
 })
 
 router.get('/secret',auth,(req,res)=>{   // auth is a middleware which verfies if user is authenticated or not
-    //    console.log(req.cookies.jwt)
        res.render('secret')
    })
    
 
- router.post("/signIn",(req,res)=>{
+ router.post("/signIn",async (req,res)=>{
+  try{
+
   
     if(req.body.SignInpassword==req.body.cSignInpassword){
         const  user=new User({
@@ -30,27 +31,28 @@ router.get('/secret',auth,(req,res)=>{   // auth is a middleware which verfies i
          })
     
          // middleware is set between getting data and saving data in models
-         const token=user.generateAuthToken()
 
+         const resForToken=await user.generateAuthToken()
+         console.log("token response")
+         console.log(resForToken)
          // res.cookie() function is used to set the cookie name to value.
          // the value parameter may be a string or object converted to json.
          // res.cookie(name,value,{expires:new Date(Date.now()+3000), httpOnly:true,secure:true});
-         res.cookie('jwt',token,{expires:new Date(Date.now()+600000), httpOnly:true,secure: false});
-        //  res.cookie("jwt",token)
-        
-         user.save()
-         .then(()=>{
-            // console.log("User Registered Succcessfully")
+         if(resForToken.status){
+            res.cookie('jwt',resForToken.token,{expires:new Date(Date.now()+600000), httpOnly:true,secure: false});
             res.json({msg:"User Registered Succcessfully",status:true})
-         }).catch((e)=>{
-            //  console.log(e)
-             res.json({msg:"Email or phone already registered",status:false})
-         })
+         }else{
+             
+            res.json({msg:resForToken.msg,status:false})
+         }
+         
 
     }else{
         res.json({msg:"Passwords are not matching",status:false})
     }
-   
+}catch(error){
+   res.json({msg:error,status:false})
+}
      
  })
 
@@ -59,19 +61,35 @@ router.get('/secret',auth,(req,res)=>{   // auth is a middleware which verfies i
         const verifyUser= await User.findOne({email:req.body.email})
         const isMatch= await bcrypt.compare(req.body.password,verifyUser.password)
 
-        const token=verifyUser.generateAuthToken()
-        res.cookie('jwt',token,{expires:new Date(Date.now()+600000), httpOnly:true,secure: false});
-        
+        const resForToken=await verifyUser.generateAuthToken()  // must be await because returning promise
+    
+        if(resForToken.status){
+            res.cookie('jwt',resForToken.token,{expires:new Date(Date.now()+600000), httpOnly:true,secure: false});
+        }
+       
         if(isMatch){
             res.render("homepage")
         }else{
             res.send("Invalid login hello Id and Passwword!!!")
         }
-     }catch(error){
-         console.log(error)    
+     }catch(error){ 
           res.send("Invalid Login Id  and password!!!")
      } 
  })
 
+router.get('/logout',auth,async (req,res)=>{
+ try{
+     
+    req.user.tokens=req.user.tokens.filter((currToken)=>{
+        return currToken.token!=req.token
+    })
+    res.clearCookie("jwt")
+    console.log("Successfully logged out")
+    const userInfo= await req.user.save()
+    res.render('firstpage')
+ }catch(error){
+  res.status(401).send(error)
+ }
+})
 
 module.exports=router

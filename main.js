@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended:false}))
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}))
-console.log(process.env.SECRET_KEY)
+
 const authRoutes=require('./routes/authRoutes')
 
 app.use(cors())

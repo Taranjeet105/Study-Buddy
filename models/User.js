@@ -42,13 +42,21 @@ const userSchema=new mongoose.Schema({
 
 
 // generating jwt token
-userSchema.methods.generateAuthToken = function(){     // name can be anything
+userSchema.methods.generateAuthToken = async function(){     // name can be anything
         // console.log("hi")
         // console.log(process.env.SECRET_KEY)
-        const token=jwt.sign({_id:this._id},process.env.SECRET_KEY)
-        this.tokens=this.tokens.concat({token:token})
+        try{
+            const token=await jwt.sign({_id:this._id},process.env.SECRET_KEY)
+            this.tokens=await this.tokens.concat({token:token})
+            await this.save()
+            return {token:token,msg:"user registered succesfully",status:true}
+        }catch(error){
+            console.log(error)
+            return {msg:"Email or phone already exists",status:false}
+        }
         
-        return token
+        
+        
     
    
 }   
