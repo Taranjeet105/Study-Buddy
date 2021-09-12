@@ -16,6 +16,12 @@ router.get('/subjects',auth,(req,res)=>{   // auth is a middleware which verfies
    })
    
 
+
+router.get('/homepage',auth,(req,res)=>{
+
+    res.render("homepage",{userInfo:req.user})
+})
+
 router.post('/subjects',auth,async (req,res)=>{
     try{
         console.log(req.body)
@@ -87,7 +93,7 @@ router.post('/subjects',auth,async (req,res)=>{
         }
        
         if(isMatch){
-
+            res.redirect('/homepage')
             res.render("homepage",{userInfo:verifyUser})
         }else{
             res.send("Invalid login hello Id and Passwword!!!")
@@ -112,7 +118,7 @@ router.get('/logout',auth,async (req,res)=>{
  }
 })
 
-router.post('/updateData',(req,res)=>{
+router.post('/updateData',auth,(req,res)=>{
     console.log(req.body)
     res.json({msg:"updated"})
 })
