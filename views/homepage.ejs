@@ -7,12 +7,56 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
 
     <title>Home page</title>
   </head>
   <body>
     <%- include('partials/navbar2') %>
-    <h1>Home page</h1>
+    <h1>Classic editor</h1>
+      
+    <div class="container">
+    <form id="myform">
+      <div id="editor" >
+        <p>This is some sample content.</p>
+      </div>
+      <button class="btn-primary" type="submit">Submit</button>
+   </form>
+    </div>
+    
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+
+
+
+            document.getElementById("myform").onsubmit=(e)=>{
+                e.preventDefault()
+                console.log(e.target)
+                let  url="http://localhost:3000/updateData"
+                let data=new URLSearchParams()
+              
+                 let userDocuments=document.querySelector('.ck-content').innerHTML
+                data.append("data",userDocuments)
+                fetch(url,{
+                    method:"post",
+                    body:data,
+                   
+                }).then(res=>res.json())
+                .then(result=>{
+                    console.log(result)
+                   
+                  
+                }).catch(err=>console.log(err))
+                
+            }
+
+
+
+    </script>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

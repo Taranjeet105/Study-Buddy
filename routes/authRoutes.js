@@ -10,10 +10,16 @@ router.get('/',(req,res)=>{
     res.render('firstpage')
 })
 
-router.get('/secret',auth,(req,res)=>{   // auth is a middleware which verfies if user is authenticated or not
-       res.render('secret')
+router.get('/subjects',auth,(req,res)=>{   // auth is a middleware which verfies if user is authenticated or not
+    
+    res.render('subjects',{userInfo:req.user})
    })
    
+
+router.post('/subjects',auth,(req,res)=>{
+    console.log(req.body)
+    res.render('subjects',{userInfo:req.user})
+})
 
  router.post("/signIn",async (req,res)=>{
   try{
@@ -68,7 +74,8 @@ router.get('/secret',auth,(req,res)=>{   // auth is a middleware which verfies i
         }
        
         if(isMatch){
-            res.render("homepage")
+
+            res.render("homepage",{userInfo:verifyUser})
         }else{
             res.send("Invalid login hello Id and Passwword!!!")
         }
@@ -90,6 +97,11 @@ router.get('/logout',auth,async (req,res)=>{
  }catch(error){
   res.status(401).send(error)
  }
+})
+
+router.post('/updateData',(req,res)=>{
+    console.log(req.body)
+    res.json({msg:"updated"})
 })
 
 module.exports=router
