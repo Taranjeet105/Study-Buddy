@@ -89,7 +89,7 @@ router.post('/subjects',auth,async (req,res)=>{
         const resForToken=await verifyUser.generateAuthToken()  // must be await because returning promise
     
         if(resForToken.status){
-            res.cookie('jwt',resForToken.token,{expires:new Date(Date.now()+600000), httpOnly:true,secure: false});
+            res.cookie('jwt',resForToken.token,{expires:new Date(Date.now()+600000), httpOnly:true,secure: true});
         }
        
         if(isMatch){
