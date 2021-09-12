@@ -34,12 +34,12 @@
   
 
     <div class="container flex-class">
-    <% userInfo.tokens.forEach(item=>{ %>
+    <% userInfo.subjects.forEach(subject=>{ %>
         <div class="card" style="width: 18rem;">
           <img src="..." class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text"><%= item %></p>
+            <h5 class="card-title">subject name: <%= subject.name %></h5>
+            <p class="card-text">subject description: <%= subject.description %></p>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">An item</li>
@@ -75,12 +75,12 @@
         <form action="/subjects" method="POST">
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Subject name: </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" name="subject-name" aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="exampleInputEmail1" name="subject_name" aria-describedby="emailHelp">
             
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Description</label>
-            <input type="text" class="form-control" id="exampleInputPassword1" name="subject-description">
+            <input type="text" class="form-control" id="exampleInputPassword1" name="subject_description">
           </div>
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">

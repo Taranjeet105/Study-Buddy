@@ -16,9 +16,22 @@ router.get('/subjects',auth,(req,res)=>{   // auth is a middleware which verfies
    })
    
 
-router.post('/subjects',auth,(req,res)=>{
-    console.log(req.body)
-    res.render('subjects',{userInfo:req.user})
+router.post('/subjects',auth,async (req,res)=>{
+    try{
+        console.log(req.body)
+       req.user.subjects= await req.user.subjects.concat({
+            subject:{
+                name:req.body.subject_name,
+                description:req.body.subject_description,
+                chapters:[]
+            },
+        })
+        await req.user.save()
+        res.render('subjects',{userInfo:req.user})
+    }catch(error){
+        res.status(401).send(error)
+    }
+   
 })
 
  router.post("/signIn",async (req,res)=>{
