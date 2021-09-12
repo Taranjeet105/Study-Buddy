@@ -11,7 +11,7 @@ router.get('/',(req,res)=>{
 })
 
 router.get('/subjects',auth,(req,res)=>{   // auth is a middleware which verfies if user is authenticated or not
-    
+    console.log(req.user.subjects)
     res.render('subjects',{userInfo:req.user})
    })
    
@@ -30,7 +30,7 @@ router.post('/subjects',auth,async (req,res)=>{
                 name:req.body.subject_name,
                 description:req.body.subject_description,
                 chapters:[]
-            },
+            }
         })
         await req.user.save()
         res.render('subjects',{userInfo:req.user})
@@ -94,7 +94,6 @@ router.post('/subjects',auth,async (req,res)=>{
        
         if(isMatch){
             res.redirect('/homepage')
-            res.render("homepage",{userInfo:verifyUser})
         }else{
             res.send("Invalid login hello Id and Passwword!!!")
         }
