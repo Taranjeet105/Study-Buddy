@@ -87,9 +87,9 @@ router.post('/subjects',auth,async (req,res)=>{
         const isMatch= await bcrypt.compare(req.body.password,verifyUser.password)
 
         const resForToken=await verifyUser.generateAuthToken()  // must be await because returning promise
-    
+        
         if(resForToken.status){
-            res.cookie('jwt',resForToken.token,{expires:new Date(Date.now()+600000), httpOnly:true,secure: true});
+            res.cookie('jwt',resForToken.token,{expires:new Date(Date.now()+600000), httpOnly:true,secure: FontFaceSetLoadEvent});
         }
        
         if(isMatch){
