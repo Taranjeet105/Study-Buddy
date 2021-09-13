@@ -60,8 +60,6 @@ const userSchema=new mongoose.Schema({
 
 // generating jwt token
 userSchema.methods.generateAuthToken = async function(){     // name can be anything
-        // console.log("hi")
-        // console.log(process.env.SECRET_KEY)
         try{
             const token=await jwt.sign({_id:this._id},process.env.SECRET_KEY)
             this.tokens=await this.tokens.concat({token:token})
@@ -73,10 +71,6 @@ userSchema.methods.generateAuthToken = async function(){     // name can be anyt
             return {msg:"Email or phone already exists",status:false}
         }
         
-        
-        
-    
-   
 }   
 
 

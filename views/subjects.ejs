@@ -34,8 +34,9 @@
   
 
     <div class="container flex-class">
+      <% let counter=1 %>
     <% userInfo.subjects.forEach(subject=>{ %>
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 18rem;" >
           <img src="..." class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">subject name: <%= subject.subject.name %></h5>
@@ -48,10 +49,13 @@
           </ul>
           <div class="card-body">
             <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <a href="/chapters" class="card-link">Chapters</a>
           </div>
         </div>
-      
+
+        <%=counter %>
+        <% counter=counter+1 %>
+
   <% }) %>
 </div>
 
@@ -72,7 +76,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="/subjects" method="POST">
+        <form action="/addSubject" method="POST">
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Subject name: </label>
             <input type="text" class="form-control" id="exampleInputEmail1" name="subject_name" aria-describedby="emailHelp">

@@ -22,7 +22,13 @@ router.get('/homepage',auth,(req,res)=>{
     res.render("homepage",{userInfo:req.user})
 })
 
-router.post('/subjects',auth,async (req,res)=>{
+router.get('/subjects',auth, (req,res)=>{
+   
+    res.render('subjects',{userInfo:req.user})
+   
+})
+
+router.post('/addSubject',auth,async (req,res)=>{
     try{
         console.log(req.body)
        req.user.subjects= await req.user.subjects.concat({
@@ -33,11 +39,31 @@ router.post('/subjects',auth,async (req,res)=>{
             }
         })
         await req.user.save()
-        res.render('subjects',{userInfo:req.user})
+        res.redirect('/subjects')
+    }catch(error){
+        res.status(401).send(error)
+    }     
+})
+
+
+router.get('/chapters',auth,(req,res)=>{
+    res.render('chapters',{userInfo:req.user})
+})
+
+router.post('/addChapter',auth,async (req,res)=>{
+    
+    try{
+        req.user.subjects.subject.chapters=await req.user.subjects.subject.chapters.concat({
+            name:req.body.name,
+            content:req.body.content
+        })
+        await req.user.save()
+        res.redirect('/chapters')
     }catch(error){
         res.status(401).send(error)
     }
-   
+
+
 })
 
  router.post("/signIn",async (req,res)=>{
@@ -89,7 +115,7 @@ router.post('/subjects',auth,async (req,res)=>{
         const resForToken=await verifyUser.generateAuthToken()  // must be await because returning promise
         
         if(resForToken.status){
-            res.cookie('jwt',resForToken.token,{expires:new Date(Date.now()+600000), httpOnly:true,secure: FontFaceSetLoadEvent});
+            res.cookie('jwt',resForToken.token,{expires:new Date(Date.now()+600000), httpOnly:true,secure: false});
         }
        
         if(isMatch){
