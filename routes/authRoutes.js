@@ -11,7 +11,7 @@ router.get('/',(req,res)=>{
 })
 
 router.get('/subjects',auth,(req,res)=>{   // auth is a middleware which verfies if user is authenticated or not
-    console.log(req.user.subjects)
+    // console.log(req.user.subjects)
     res.render('subjects',{userInfo:req.user})
    })
    
@@ -30,7 +30,7 @@ router.get('/subjects',auth, (req,res)=>{
 
 router.post('/addSubject',auth,async (req,res)=>{
     try{
-        console.log(req.body)
+        // console.log(req.body)
        req.user.subjects= await req.user.subjects.concat({
             subject:{
                 name:req.body.subject_name,
@@ -46,8 +46,10 @@ router.post('/addSubject',auth,async (req,res)=>{
 })
 
 
-router.get('/chapters',auth,(req,res)=>{
-    res.render('chapters',{userInfo:req.user})
+router.get('/chapters/:id',auth,(req,res)=>{
+    console.log(req.params.id)
+    // console.log("in shanty")
+    res.render('chapters',{userInfo:req.user,subjectNumber:req.params.id})
 })
 
 router.post('/addChapter',auth,async (req,res)=>{
