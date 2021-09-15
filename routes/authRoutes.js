@@ -46,10 +46,21 @@ router.post('/addSubject',auth,async (req,res)=>{
 })
 
 
-router.get('/chapters/:id',auth,(req,res)=>{
-    typeof req.params.id
-    console.log(req.user.subjects[req.params.id])
+router.get('/chapters/:id',auth,async (req,res)=>{
+    try{
+        console.log("inside chapters")
+        console.log(typeof req.params.id)
+    // console.log(req.user)
+    // console.log(req.user.subjects)
+    let subjectNumber=parseInt(req.params.id);
+    console.log(typeof subjectNumber)
+    console.log(req.user.subjects[subjectNumber])
+    console.log(subjectNumber)
     res.render('chapters',{userInfo:req.user,subjectNumber:parseInt(req.params.id)})
+    }catch(e){
+        res.status(401).send(e)
+    }
+    
 })
 
 router.post('/addChapter/:id',auth,async (req,res)=>{
