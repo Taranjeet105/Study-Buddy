@@ -47,20 +47,23 @@ router.post('/addSubject',auth,async (req,res)=>{
 
 
 router.get('/chapters/:id',auth,(req,res)=>{
-    console.log(req.params.id)
-    // console.log("in shanty")
-    res.render('chapters',{userInfo:req.user,subjectNumber:req.params.id})
+    typeof req.params.id
+    console.log(req.user.subjects[req.params.id])
+    res.render('chapters',{userInfo:req.user,subjectNumber:parseInt(req.params.id)})
 })
 
-router.post('/addChapter',auth,async (req,res)=>{
+router.post('/addChapter/:id',auth,async (req,res)=>{
     
     try{
-        req.user.subjects.subject.chapters=await req.user.subjects.subject.chapters.concat({
-            name:req.body.name,
-            content:req.body.content
+        console.log(req.params.id)
+        let subjectId=parseInt(req.params.id)
+        console.log(req.user.subjects[subjectId])
+        req.user.subjects[subjectId].subject.chapters=await req.user.subjects[subjectId].subject.chapters.concat({
+            name:req.body.chapter_name,
+            content:""
         })
         await req.user.save()
-        res.redirect('/chapters')
+        res.redirect('/chapters/'+req.params.id)
     }catch(error){
         res.status(401).send(error)
     }
@@ -92,7 +95,7 @@ router.post('/addChapter',auth,async (req,res)=>{
          // the value parameter may be a string or object converted to json.
          // res.cookie(name,value,{expires:new Date(Date.now()+3000), httpOnly:true,secure:true});
          if(resForToken.status){
-            res.cookie('jwt',resForToken.token,{expires:new Date(Date.now()+600000), httpOnly:true,secure: false});
+            res.cookie('jwt',resForToken.token,{expires:new Date(Date.now()+6000000000), httpOnly:true,secure: false});
             res.json({msg:"User Registered Succcessfully",status:true})
          }else{
              

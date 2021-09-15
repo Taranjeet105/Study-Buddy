@@ -17,11 +17,12 @@
 
     <div class="container flex-class">
         <% userInfo.subjects[subjectNumber].subject.chapters.forEach(chapter=>{ %>
+          <%=userInfo.subjects[subjectNumber].subject %>
             <div class="card" style="width: 18rem;">
               <img src="..." class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">Chapter name: <%= chapter %></h5>
-                <!-- <p class="card-text">subject description: <%= subject.subject.description %></p> -->
+                <h5 class="card-title">Chapter name: <%= chapter.name %></h5>
+              
               </div>
               <!-- <ul class="list-group list-group-flush">
                 <li class="list-group-item">An item</li>
@@ -36,6 +37,50 @@
           
       <% }) %>
     </div>
+
+    <button type="button" class="btn btn-primary add-subject" data-bs-toggle="modal" data-bs-target="#addChapterModal">
+      Add Chapter
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="addChapterModal" tabindex="-1" aria-labelledby="addChapterModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addChapterModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <% let addChapterUrl="/addChapter/"+subjectNumber.toString() %>
+            <form action=<%=addChapterUrl %> method="POST">
+              <div class="mb-3">
+                <label for="chapterName" class="form-label">Chapter name: </label>
+                <input type="text" class="form-control" id="chapterName" name="chapter_name" aria-describedby="emailHelp">
+                
+              </div>
+              <!-- <div class="mb-3">
+                <label for="subjectDescription" class="form-label">Description</label>
+                <input type="text" class="form-control" id="subjectDescription" name="subject_description">
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div> -->
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+       
+              <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+            
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
