@@ -82,6 +82,29 @@ router.post('/addChapter/:id',auth,async (req,res)=>{
 
 })
 
+router.get('/editChapter/:id',auth,(req,res)=>{
+       
+        let chapterToEdit=req.params.id
+    res.render('editor',{userInfo:req.user,subjectNum:chapterToEdit[0],chapterNum:chapterToEdit[1]})
+})
+
+router.post('/saveChapter/:id',auth, async (req,res)=>{
+    try{
+        console.log(req.body)
+        console.log(typeof (req.body.data))
+        let chapterToEdit=req.params.id // subject number , chapter number
+        req.user.subjects[parseInt(chapterToEdit[0])].subject.chapters[parseInt(chapterToEdit[1])].content=JSON.stringify(req.body)
+        await req.user.save()
+        let text='<p>some text here</p>';
+        // let html=new DOMParser().parseFromString(text,"text/xml")
+        res.render("readChapter",{userInfo:req.user,editorHtml:req.body.data})
+    }catch(e){
+        console.log(e)
+        res.status(401).send(e)
+    }
+   
+})
+
  router.post("/signIn",async (req,res)=>{
   try{
 
@@ -106,7 +129,7 @@ router.post('/addChapter/:id',auth,async (req,res)=>{
          // the value parameter may be a string or object converted to json.
          // res.cookie(name,value,{expires:new Date(Date.now()+3000), httpOnly:true,secure:true});
          if(resForToken.status){
-            res.cookie('jwt',resForToken.token,{expires:new Date(Date.now()+6000000000), httpOnly:true,secure: false});
+            res.cookie('jwt',resForToken.token,{expires:new Date(Date.now()+600000000000000), httpOnly:true,secure: false});
             res.json({msg:"User Registered Succcessfully",status:true})
          }else{
              
@@ -131,7 +154,7 @@ router.post('/addChapter/:id',auth,async (req,res)=>{
         const resForToken=await verifyUser.generateAuthToken()  // must be await because returning promise
         
         if(resForToken.status){
-            res.cookie('jwt',resForToken.token,{expires:new Date(Date.now()+600000), httpOnly:true,secure: false});
+            res.cookie('jwt',resForToken.token,{expires:new Date(Date.now()+600000000000000), httpOnly:true,secure: false});
         }
        
         if(isMatch){

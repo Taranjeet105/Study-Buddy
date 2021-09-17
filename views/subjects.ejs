@@ -35,9 +35,12 @@
 
     <div class="container flex-class">
       <% let counter=0 %>
+      <% let counterimg=0 %>
+      <% let imgtype=["book","study","library"] %>
     <% userInfo.subjects.forEach(subject=>{ %>
         <div class="card" style="width: 18rem;" id=<%= counter.toString() %> >
-          <img src="..." class="card-img-top" alt="...">
+          <% let imgtoshow="https://source.unsplash.com/1600x900/?"+imgtype[counterimg] %>
+          <img src=<%=imgtoshow %> class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">subject name: <%= subject.subject.name %></h5>
             <p class="card-text">subject description: <%= subject.subject.description %></p>
@@ -53,9 +56,8 @@
             <a href=<%= url %> class="card-link">Chapters</a>
           </div>
         </div>
-
-        <%=counter %>
         <% counter=counter+1 %>
+        <% counterimg=(counterimg+1)%3 %>
 
   <% }) %>
 </div>

@@ -30,8 +30,11 @@
        
     <!-- <div class="container flex-class"> -->
       <% let counter=0%>
+      <% let chapterCount=0%>
+      
         <% userInfo.subjects[subjectNumber].subject.chapters.forEach(chapter=>{ %>
-                
+          <% let url="/editChapter/"%>
+              <% url=url+subjectNumber.toString()+chapterCount.toString()%>
               <% if(counter==0){ %>
 
                 <div class="alert alert-primary chapter" role="alert">
@@ -41,7 +44,7 @@
                 </div>
                 <div class="buttons">
                   <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
-                  <button type="button" class="btn btn-info" class="editChapter">Edit</button>
+                  <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
                 </div>
                   </div>
               </div>
@@ -54,7 +57,7 @@
                 </div>
                 <div class="buttons">
                   <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
-                  <button type="button" class="btn btn-info" class="editChapter">Edit</button>
+                  <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
                 </div>
                   </div>
                 </div>
@@ -67,7 +70,7 @@
                 </div>
                 <div class="buttons">
                   <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
-                  <button type="button" class="btn btn-info" class="editChapter">Edit</button>
+                  <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
                 </div>
                   </div>
                 </div>
@@ -80,7 +83,7 @@
                 </div>
                 <div class="buttons">
                   <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
-                  <button type="button" class="btn btn-info" class="editChapter">Edit</button>
+                  <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
                 </div>
                   </div>
                 </div>
@@ -93,7 +96,7 @@
                 </div>
                 <div class="buttons">
                   <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
-                  <button type="button" class="btn btn-info" class="editChapter">Edit</button>
+                  <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
                 </div>
                   </div>
                 </div>
@@ -106,7 +109,7 @@
                 </div>
                 <div class="buttons">
                   <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
-                  <button type="button" class="btn btn-info" class="editChapter">Edit</button>
+                  <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
                 </div>
                   </div>
                 </div>
@@ -119,12 +122,15 @@
                 </div>
                 <div class="buttons">
                   <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
-                  <button type="button" class="btn btn-info" class="editChapter">Edit</button>
+                  <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>">Edit</a></button>
                 </div>
                   </div>
                 </div>   
                
-                <% } counter=(counter+1)%7 %>
+                <% } %>
+                
+               <%  counter=(counter+1)%7 %>
+                <% chapterCount=chapterCount+1 %>
       <% }) %>
 
     <!-- </div> -->
