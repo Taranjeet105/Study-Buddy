@@ -35,7 +35,7 @@
               <% url=url+subjectNumber.toString()+chapterCount.toString()%>
               <% if(counter==0){ %>
 
-                <div class="alert alert-primary chapter" role="alert">
+                <div class="alert alert-primary chapter flex-class" >
                   <div class="container flex-class">
                     <div>
                   Chapter name: <%= chapter.name %>
@@ -48,7 +48,7 @@
               </div>
            
             <% } else if(counter==1){ %>
-                <div class="alert alert-secondary" role="alert">
+                <div class="alert alert-secondary flex-class" >
                   <div class="container flex-class">
                     <div>
                   Chapter name: <%= chapter.name %>
@@ -61,7 +61,7 @@
                 </div>
                
                 <% } else if(counter==2){ %>
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success flex-class" >
                   <div class="container flex-class">
                     <div>
                   Chapter name: <%= chapter.name %>
@@ -74,7 +74,7 @@
                 </div>
               
                 <% } else if(counter==3){ %>
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-danger flex-class" >
                   <div class="container flex-class">
                     <div>
                   Chapter name: <%= chapter.name %>
@@ -87,7 +87,7 @@
                 </div>
                
                 <% } else if(counter==4){ %>
-                <div class="alert alert-warning" role="alert">
+                <div class="alert alert-warning flex-class" >
                   <div class="container flex-class">
                     <div>
                   Chapter name: <%= chapter.name %>
@@ -100,11 +100,11 @@
                 </div>
           
                 <% } else if(counter==5){ %>
-                <div class="alert alert-info" role="alert">
+                <div class="alert alert-info flex-class" >
                   <div class="container flex-class">
                     <div>
                   Chapter name: <%= chapter.name %>
-                </div>
+                    </div>
                 <div class="buttons">
                   <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
                   <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
@@ -113,7 +113,7 @@
                 </div>
               
                 <% } else if(counter==6){ %>
-                <div class="alert alert-dark" role="alert">
+                <div class="alert alert-dark flex-class" >
                   <div class="container flex-class">
                     <div>
                   Chapter name: <%= chapter.name %>
