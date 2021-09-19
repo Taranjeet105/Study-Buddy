@@ -108,6 +108,7 @@ router.get('/readChapter/:id',auth, async (req,res)=>{
         html=JSON.parse(html)
         res.render("readChapter",{userInfo:req.user,editorHtml:html.data})
     }catch(e){
+        res.render('NotFound')
         console.log(e)
         res.status(401).send(e)
     }
