@@ -20,7 +20,15 @@
       /* width: 901px;
       margin-left: 28px; */
     }
-   
+    .flex-elem2{
+      flex-basis: 200px;
+      position: relative;
+    }
+    #addSubject{
+      position:absolute;
+      bottom:10px;
+      right:0px;
+    }
     /* .add-subject {
       position: absolute;
       right: 100px;
@@ -52,15 +60,17 @@
             <h5 class="card-title">subject name: <%= subject.subject.name %></h5>
             <p class="card-text">subject description: <%= subject.subject.description %></p>
           </div>
-          <ul class="list-group list-group-flush">
+          <!-- <ul class="list-group list-group-flush">
             <li class="list-group-item">An item</li>
             <li class="list-group-item">A second item</li>
             <li class="list-group-item">A third item</li>
-          </ul>
+          </ul> -->
           <div class="card-body">
-            <a href="#" class="card-link">Card link</a>
+            <button type="button" class="btn btn-warning" class="deleteSubject"> <a href="#" class="card-link">Delete</a></button>
+           
             <% let url="/chapters/"+counter.toString() %>
-            <a href=<%= url %> class="card-link">Chapters</a>
+            <button type="button" class="btn btn-info" class="deleteSubject"><a href=<%= url %> class="card-link">Chapters</a></button>
+            
           </div>
     </div>
        
@@ -74,8 +84,8 @@
 
 
 <!-- Button trigger modal -->
-<div class="flex-elem2">
-<button type="button" class="btn btn-primary add-subject" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<div class="flex-elem2" >
+<button id="addSubject"  type="button" class="btn btn-primary add-subject" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Add Subject
 </button>
 </div>

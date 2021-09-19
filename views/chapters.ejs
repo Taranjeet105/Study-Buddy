@@ -32,13 +32,15 @@
       
         <% userInfo.subjects[subjectNumber].subject.chapters.forEach(chapter=>{ %>
           <% let url="/editChapter/"%>
-              <% url=url+subjectNumber.toString()+chapterCount.toString()%>
+          <% let url2="/readChapter/" %>
+              <% url=url+subjectNumber.toString()+","+chapterCount.toString()%>
+              <% url2=url2+subjectNumber.toString()+","+chapterCount.toString()%>             
               <% if(counter==0){ %>
 
                 <div class="alert alert-primary chapter flex-class" >
                   <div class="container flex-class">
                     <div>
-                  Chapter name: <%= chapter.name %>
+                 <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
                 </div>
                 <div class="buttons">
                   <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
@@ -51,7 +53,7 @@
                 <div class="alert alert-secondary flex-class" >
                   <div class="container flex-class">
                     <div>
-                  Chapter name: <%= chapter.name %>
+                      <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
                 </div>
                 <div class="buttons">
                   <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
@@ -64,7 +66,7 @@
                 <div class="alert alert-success flex-class" >
                   <div class="container flex-class">
                     <div>
-                  Chapter name: <%= chapter.name %>
+                      <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
                 </div>
                 <div class="buttons">
                   <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
@@ -77,7 +79,7 @@
                 <div class="alert alert-danger flex-class" >
                   <div class="container flex-class">
                     <div>
-                  Chapter name: <%= chapter.name %>
+                      <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
                 </div>
                 <div class="buttons">
                   <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
@@ -90,7 +92,7 @@
                 <div class="alert alert-warning flex-class" >
                   <div class="container flex-class">
                     <div>
-                  Chapter name: <%= chapter.name %>
+                      <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
                 </div>
                 <div class="buttons">
                   <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
@@ -103,7 +105,7 @@
                 <div class="alert alert-info flex-class" >
                   <div class="container flex-class">
                     <div>
-                  Chapter name: <%= chapter.name %>
+                      <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
                     </div>
                 <div class="buttons">
                   <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
@@ -116,7 +118,7 @@
                 <div class="alert alert-dark flex-class" >
                   <div class="container flex-class">
                     <div>
-                  Chapter name: <%= chapter.name %>
+                      <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
                 </div>
                 <div class="buttons">
                   <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>

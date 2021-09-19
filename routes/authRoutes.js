@@ -48,14 +48,9 @@ router.post('/addSubject',auth,async (req,res)=>{
 
 router.get('/chapters/:id',auth,async (req,res)=>{
     try{
-        console.log("inside chapters")
-        console.log(typeof req.params.id)
-    // console.log(req.user)
-    // console.log(req.user.subjects)
+   
     let subjectNumber=parseInt(req.params.id);
-    console.log(typeof subjectNumber)
-    console.log(req.user.subjects[subjectNumber])
-    console.log(subjectNumber)
+   
     res.render('chapters',{userInfo:req.user,subjectNumber:parseInt(req.params.id)})
     }catch(e){
         res.status(401).send(e)
@@ -84,20 +79,34 @@ router.post('/addChapter/:id',auth,async (req,res)=>{
 
 router.get('/editChapter/:id',auth,(req,res)=>{
        
-        let chapterToEdit=req.params.id
+        let chapterToEdit=req.params.id.split(",")
+        console.log(chapterToEdit[0])
+        console.log(chapterToEdit[1])
     res.render('editor',{userInfo:req.user,subjectNum:chapterToEdit[0],chapterNum:chapterToEdit[1]})
 })
 
 router.post('/saveChapter/:id',auth, async (req,res)=>{
     try{
-        console.log(req.body)
-        console.log(typeof (req.body.data))
-        let chapterToEdit=req.params.id // subject number , chapter number
+
+        let chapterToEdit=req.params.id.split(",") // subject number , chapter number
         req.user.subjects[parseInt(chapterToEdit[0])].subject.chapters[parseInt(chapterToEdit[1])].content=JSON.stringify(req.body)
         await req.user.save()
-        let text='<p>some text here</p>';
-        // let html=new DOMParser().parseFromString(text,"text/xml")
+
         res.render("readChapter",{userInfo:req.user,editorHtml:req.body.data})
+    }catch(e){
+        console.log(e)
+        res.status(401).send(e)
+    }
+   
+})
+
+router.get('/readChapter/:id',auth, async (req,res)=>{
+    try{
+
+        let chapterToRead=req.params.id.split(",") // subject number , chapter number
+        let html=await req.user.subjects[parseInt(chapterToRead[0])].subject.chapters[parseInt(chapterToRead[1])].content
+        html=JSON.parse(html)
+        res.render("readChapter",{userInfo:req.user,editorHtml:html.data})
     }catch(e){
         console.log(e)
         res.status(401).send(e)
