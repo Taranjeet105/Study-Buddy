@@ -46,6 +46,17 @@ router.post('/addSubject',auth,async (req,res)=>{
 })
 
 
+router.get('/deleteSubject/:id',auth,async (req,res)=>{
+    try{
+        let subI=parseInt(req.params.id)
+        await req.user.subjects.splice(subI,1)
+        await req.user.save()
+        res.render('subjects',{userInfo:req.user})
+    }catch(e){
+        res.status(401).send(e)
+    }
+})
+
 router.get('/chapters/:id',auth,async (req,res)=>{
     try{
    
@@ -98,6 +109,22 @@ router.post('/saveChapter/:id',auth, async (req,res)=>{
         res.status(401).send(e)
     }
    
+})
+
+router.get('/deleteChapter/:id',auth,async (req,res)=>{
+    try{
+        let chapterToDelete=req.params.id.split(",")
+        let subI=parseInt(chapterToDelete[0])
+        let chapI=parseInt(chapterToDelete[1])
+        console.log(subI)
+        console.log(chapI)
+        await req.user.subjects[subI].subject.chapters.splice(chapI,1)
+        await req.user.save()
+        res.render('chapters',{userInfo:req.user,subjectNumber:subI})
+    }catch(e){
+        console.log(e)
+        res.status(401).send(e)
+    }
 })
 
 router.get('/readChapter/:id',auth, async (req,res)=>{

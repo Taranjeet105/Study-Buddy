@@ -33,8 +33,10 @@
         <% userInfo.subjects[subjectNumber].subject.chapters.forEach(chapter=>{ %>
           <% let url="/editChapter/"%>
           <% let url2="/readChapter/" %>
+          <% let url3="/deleteChapter/" %>
               <% url=url+subjectNumber.toString()+","+chapterCount.toString()%>
-              <% url2=url2+subjectNumber.toString()+","+chapterCount.toString()%>             
+              <% url2=url2+subjectNumber.toString()+","+chapterCount.toString()%>    
+              <% url3=url3+subjectNumber.toString()+","+chapterCount.toString() %>      
               <% if(counter==0){ %>
 
                 <div class="alert alert-primary chapter flex-class" >
@@ -43,7 +45,7 @@
                  <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
                 </div>
                 <div class="buttons">
-                  <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
+                  <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3 %>>Delete</a></button>
                   <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
                 </div>
                   </div>
@@ -56,7 +58,7 @@
                       <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
                 </div>
                 <div class="buttons">
-                  <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
+                  <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3 %>>Delete</a></button>
                   <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
                 </div>
                   </div>
@@ -69,7 +71,7 @@
                       <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
                 </div>
                 <div class="buttons">
-                  <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
+                  <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3 %>>Delete</a></button>
                   <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
                 </div>
                   </div>
@@ -82,7 +84,7 @@
                       <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
                 </div>
                 <div class="buttons">
-                  <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
+                  <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3 %>>Delete</a></button>
                   <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
                 </div>
                   </div>
@@ -95,7 +97,7 @@
                       <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
                 </div>
                 <div class="buttons">
-                  <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
+                  <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3 %>>Delete</a></button>
                   <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
                 </div>
                   </div>
@@ -108,7 +110,7 @@
                       <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
                     </div>
                 <div class="buttons">
-                  <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
+                  <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3 %>>Delete</a></button>
                   <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
                 </div>
                   </div>
@@ -121,7 +123,7 @@
                       <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
                 </div>
                 <div class="buttons">
-                  <button type="button" class="btn btn-warning" class="deleteChapter">Delete</button>
+                  <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3 %>>Delete</a></button>
                   <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>">Edit</a></button>
                 </div>
                   </div>

@@ -66,9 +66,11 @@
             <li class="list-group-item">A third item</li>
           </ul> -->
           <div class="card-body">
-            <button type="button" class="btn btn-warning" class="deleteSubject"> <a href="#" class="card-link">Delete</a></button>
-           
             <% let url="/chapters/"+counter.toString() %>
+            <% let url2="/deleteSubject/"+counter.toString() %>
+            <button type="button" class="btn btn-warning" class="deleteSubject"> <a href=<%= url2 %> class="card-link">Delete</a></button>
+           
+            
             <button type="button" class="btn btn-info" class="deleteSubject"><a href=<%= url %> class="card-link">Chapters</a></button>
             
           </div>
