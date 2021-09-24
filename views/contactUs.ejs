@@ -13,13 +13,13 @@
 
     <style>
       
-      .background_img {
+     body {
         background-image: url('https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569__480.jpg');
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: 100% 100%;
         width: 100vw;
-        height: 30vh;
+        height: 100vh;
  
       }
 
@@ -44,6 +44,17 @@
         color: white;
       }
 
+      .form-container{
+        margin-left: 250px;
+      }
+      .mydetails-container{
+        padding-top: 110px;
+      }
+
+      .center{
+        text-align: center;
+      }
+      
     </style>
     <title>Contact Us</title>
   </head>
@@ -51,35 +62,46 @@
    
 
 
-    <div class="background_img white-color">
+    <div class="white-color center">
       <h1>Contact Us</h1>
       <h2>We would love to hear from you</h2>
       <h3>Help us to improve</h3>
     </div>
 
-    <div class="flex-class background_img2">
-    <div class="form-container" style="flex-grow: 1;">                               
-    <form>
-      <div class="mb-3">
+    <div class="flex-class white-color">
+    <div class="form-container" style="flex-grow: 1;">
+      <div id="messageStatus" class="alert alert-dismissible fade show" role="alert" style="display: none;">
+        <span id="status"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>                               
+    <form id="myform">
+      
 
         <div class="mb-3">
+          <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/user-3265279-2740759.png" alt="" style="  float: left; height: 25px; width: 25px;">
+    
+          
           <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control" id="name">
+          <input name="name" type="text" class="form-control" id="name">
         </div>
 
         <div class="mb-3">
+          <img src="https://marcos0901.herokuapp.com/assets/telephone.png" alt="" style="  float: left; height: 25px; width: 25px;">
+    
           <label for="phone" class="form-label">Phone</label>
-          <input type="tel" class="form-control" id="phone">
+          <input name="phone" type="tel" class="form-control" id="phone">
         </div>
-
+        <div class="mb-3">
+          <img src="https://marcos0901.herokuapp.com/assets/icons8-gmail.svg" alt="" style="float: left; height: 25px; width: 25px;">
+    
         <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+        <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
       </div>
 
       <div class="mb-3">
         <label for="message" class="form-label">Message</label>
-        <textarea class="form-control" id="message"></textarea>
+        <textarea name="message" class="form-control" id="message"></textarea>
       </div>
      
 
@@ -100,6 +122,44 @@
     </div>
 
   </div>
+
+  <script>
+    document.getElementById("myform").onsubmit=(e)=>{
+                  e.preventDefault()
+                  console.log(e.target)
+                  let  url="https://studdy-buddyy.herokuapp.com/contactUs"
+                  let data=new URLSearchParams()
+                 
+                  for(const pair of new FormData(e.target) ){
+                      
+                      data.append(pair[0],pair[1])
+                  }
+                  fetch(url,{
+                      method:"post",
+                      body:data,
+                    
+                  }).then(res=>res.json())
+                  .then(result=>{
+
+                      console.log(result)
+                      if(result.success==true){
+                        document.getElementById("messageStatus").style.display = "block";
+                        
+                        document.getElementById("messageStatus").classList.add('alert-success');
+                        document.getElementById('status').innerText="message sent succesfully"
+                       
+                        // location.reload()
+                      }else{
+                        document.getElementById("messageStatus").style.display = "block";
+                        
+                        document.getElementById("messageStatus").classList.add('alert-danger');
+                        document.getElementById('status').innerText="Error in sending message"
+                      }
+                    
+                  }).catch(err=>console.log(err))
+                  
+              }
+    </script>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

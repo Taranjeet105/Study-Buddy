@@ -1,6 +1,7 @@
 const express=require('express')
 const mongoose=require('mongoose')
 const User=mongoose.model('User')
+const nodemailer=require("nodemailer")
 const router=express.Router()
 const auth=require('../middleware/auth')
 const bcrypt=require('bcryptjs')
@@ -226,6 +227,52 @@ router.post('/updateData',auth,(req,res)=>{
 
 router.get('/contactUs',(req,res)=>{
     res.render('contactUs')
+})
+
+router.post('/contactUs',(req,res)=>{
+    console.log(req.body)
+    let name=req.body.name
+    let senderEmail=req.body.email
+    let phone=req.body.phone
+    let message=req.body.message
+       
+    var transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+          user: process.env.EMAIL,
+          pass: process.env.PASSWORD,
+         
+        },
+    });
+
+    var mailOptions = {
+        from: 'shantys502@gmail.com',
+        to: 'shantys502@gmail.com',
+        subject: "User Query on Study-buddy",
+        html: `
+        Name of the sender : ${name}
+        <br/>
+        Email of the sender : ${senderEmail}
+        <br/>
+        Phone number of the Sender : ${phone}
+        Message : ${message}
+        `,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+          return res.json({success:false,message:error})
+        } else {
+          console.log("Email sent: " + info.response);
+        return res.json({success:true,message:"message sent"})
+        }
+    });
+
+
+
+
+    // res.render('contactUs')
 })
 
 router.get('/aboutUs',(req,res)=>{
