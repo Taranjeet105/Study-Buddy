@@ -213,7 +213,7 @@ router.get('/logout',auth,async (req,res)=>{
     res.clearCookie("jwt")
     console.log("Successfully logged out")
     const userInfo= await req.user.save()
-    res.render('firstpage')
+    res.redirect('/')
  }catch(error){
   res.status(401).send(error)
  }
@@ -224,4 +224,11 @@ router.post('/updateData',auth,(req,res)=>{
     res.json({msg:"updated"})
 })
 
+router.get('/contactUs',(req,res)=>{
+    res.render('contactUs')
+})
+
+router.get('/aboutUs',(req,res)=>{
+    res.render('aboutUs')
+})
 module.exports=router
