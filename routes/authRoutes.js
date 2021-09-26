@@ -8,6 +8,7 @@ const bcrypt=require('bcryptjs')
 app=express()
 app.use(express.urlencoded({extended:false}))
 router.get('/',(req,res)=>{
+   
     res.render('firstpage')
 })
 
