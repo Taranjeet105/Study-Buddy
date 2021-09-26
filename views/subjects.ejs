@@ -8,6 +8,15 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
   <style>
+      .background_img {
+        background-image: url('https://img.freepik.com/free-vector/hand-drawn-colorful-science-education-background_23-2148490027.jpg?size=626&ext=jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        width: 100vw;
+        height: 100vh;
+        
+      }
     .flex-class{
       display: flex;
       flex-wrap:wrap;
@@ -42,7 +51,7 @@
   
   
     <%- include('partials/navbar2') %>
-
+  <div class="background_img">
 
 
     <div class="container flex-class2 " style="width: 100vw; ">
@@ -86,11 +95,11 @@
 
 
 <!-- Button trigger modal -->
-<div class="flex-elem2" >
-<button id="addSubject"  type="button" class="btn btn-primary add-subject" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<!-- <div class="flex-elem2" > -->
+<!-- <button id="addSubject"  type="button" class="btn btn-primary add-subject" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Add Subject
-</button>
-</div>
+</button> -->
+<!-- </div> -->
 </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -129,7 +138,11 @@
 </div>
 
 
+</div>
 
+    <script>
+      document.getElementById('plus').style.display="block"
+    </script>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

@@ -3,14 +3,32 @@ const mongoose=require('mongoose')
 const User=mongoose.model('User')
 const nodemailer=require("nodemailer")
 const router=express.Router()
+const jwt=require('jsonwebtoken')
 const auth=require('../middleware/auth')
 const bcrypt=require('bcryptjs')
 app=express()
 app.use(express.urlencoded({extended:false}))
-router.get('/',(req,res)=>{
-   
-    res.render('firstpage')
+
+router.get('/',async (req,res)=>{
+
+    try{
+        const token=req.cookies.jwt
+        const verifyUser=jwt.verify(token,process.env.SECRET_KEY)
+        if(verifyUser){
+            res.redirect('/homepage')
+        }else{
+            res.render('firstpage')
+        }
+    }catch(e){
+        res.render('firstpage')
+    }
+
 })
+
+// router.get('/',(req,res)=>{
+   
+//     res.render('firstpage')
+// })
 
 router.get('/subjects',auth,(req,res)=>{   // auth is a middleware which verfies if user is authenticated or not
     // console.log(req.user.subjects)

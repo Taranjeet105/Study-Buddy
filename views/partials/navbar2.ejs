@@ -16,12 +16,19 @@
            
           
             </ul>
+
+            <span id="plus" style="display: none; margin-right: 5px;">
+              <button  type="button" class="btn btn-primary add-subject" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                +
+               </button>
+            </span>
+
             <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
 
-
+            
             <!-- Logout dropdown -->
           <div class="btn-group">
             <button type="button" class="btn btn-info">Hello <%= userInfo.firstname %></button>
