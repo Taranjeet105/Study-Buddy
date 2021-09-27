@@ -245,10 +245,10 @@ router.post('/updateData',auth,(req,res)=>{
     res.json({msg:"updated"})
 })
 
-router.get('/plan',auth,(req,res)=>{
+// router.get('/plan',auth,(req,res)=>{
 
-    res.render('plan',{userInfo:req.user})
-})
+//     res.render('plan',{userInfo:req.user})
+// })
 
 router.post('/setReminder',auth,(req,res)=>{
 
@@ -283,8 +283,8 @@ router.post('/setReminder',auth,(req,res)=>{
         `,
     };
 
-  cron.schedule(`${minute} ${hour} ${dom} ${month} *`,(req,res)=>{
-
+   cron.schedule(`${minute} ${hour} ${dom} ${month} *`,()=>{
+        console.log("sent")
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
               console.log(error);
@@ -293,9 +293,9 @@ router.post('/setReminder',auth,(req,res)=>{
               console.log("Email sent: " + info.response);
             return res.json({success:true,message:"message sent"})
             }
-        });
+        })
     })
-   
+    res.redirect('/subjects')
 })
 
 router.get('/contactUs',(req,res)=>{
