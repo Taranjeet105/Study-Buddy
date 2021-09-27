@@ -2,6 +2,7 @@ const express=require('express')
 const mongoose=require('mongoose')
 const User=mongoose.model('User')
 const nodemailer=require("nodemailer")
+const cron=require("node-cron")
 const router=express.Router()
 const jwt=require('jsonwebtoken')
 const auth=require('../middleware/auth')
@@ -242,6 +243,59 @@ router.get('/logout',auth,async (req,res)=>{
 router.post('/updateData',auth,(req,res)=>{
     console.log(req.body)
     res.json({msg:"updated"})
+})
+
+router.get('/plan',auth,(req,res)=>{
+
+    res.render('plan',{userInfo:req.user})
+})
+
+router.post('/setReminder',auth,(req,res)=>{
+
+    let date=req.body.timedate.slice(0,10).split("-")  // year month date
+    let time=req.body.timedate.slice(11,17).split(":")  //hour minute
+    let message=req.body.message
+    let hour=time[0]
+    let minute=time[1]
+    let month=date[1]
+    let dom=date[2]
+    console.log(date)
+    console.log(time)
+    console.log(req.body)
+    // let date=req.body.phone
+    // let month=req.body.month
+       
+    var transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+          user: process.env.EMAIL,
+          pass: process.env.PASSWORD,
+         
+        },
+    });
+
+    var mailOptions = {
+        from: 'shantys502@gmail.com',
+        to: 'shantys502@gmail.com',
+        subject: "Reminder from Study-buddy",
+        html: `
+        Message : ${message}
+        `,
+    };
+
+  cron.schedule(`${minute} ${hour} ${dom} ${month} *`,(req,res)=>{
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              console.log(error);
+              return res.json({success:false,message:error})
+            } else {
+              console.log("Email sent: " + info.response);
+            return res.json({success:true,message:"message sent"})
+            }
+        });
+    })
+   
 })
 
 router.get('/contactUs',(req,res)=>{
