@@ -10,6 +10,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
+
       .background_img {
         background-image: url('https://img.freepik.com/free-photo/back-school-education-banner-background_8087-1192.jpg?size=626&ext=jpg');
         background-repeat: no-repeat;
@@ -22,6 +23,7 @@
     .flex-class{
       display: flex;
       flex-wrap:wrap;
+      justify-content: space-between;
 
     }
     .flex-class2{
@@ -53,29 +55,25 @@
   
   
     <%- include('partials/navbar2') %>
-  <div class="background_img">
+  <div class="background_img flex-class">
 
 
-    <div class="container flex-class2 ">
-  <div class="flex-elm1" style="flex-grow: 4;">
+    <div class="container flex-class ">
+  <div class="flex-elm1" >
     <div class="container flex-class">
      
       <% let counter=0 %>
       <% let counterimg=0 %>
       <% let imgtype=["book","study","library"] %>
     <% userInfo.subjects.forEach(subject=>{ %>
-        <div class="card style1" style="width: 18rem; opacity: 0.8;" id=<%=counter.toString()%> >
+        <div  class="card style1 " style=" opacity: 0.8; width: 200px; " id=<%=counter.toString()%> >
           <% let imgtoshow="https://source.unsplash.com/1600x900/?"+imgtype[counterimg]%>
           <img src=<%=imgtoshow %> class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">subject name: <%= subject.subject.name %></h5>
             <p class="card-text">subject description: <%= subject.subject.description %></p>
           </div>
-          <!-- <ul class="list-group list-group-flush">
-            <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
-          </ul> -->
+ 
           <div class="card-body">
             <% let url="/chapters/"+counter.toString() %>
             <% let url2="/deleteSubject/"+counter.toString() %>
@@ -97,9 +95,9 @@
 
 
 <!-- Button trigger modal -->
-<div class="flex-elem2" >
+
   <div class="parent">
-    <div class="formContainer" style="flex-grow: 1;">
+    <div class="formContainer">
   <form action="/setReminder" method="POST">
 
 
@@ -117,7 +115,7 @@
     </form>
   </div>
 </div>
-</div>
+
 </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
