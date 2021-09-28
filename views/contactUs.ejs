@@ -132,7 +132,7 @@
     document.getElementById("myform").onsubmit=(e)=>{
                   e.preventDefault()
                   console.log(e.target)
-                  let  url="http://localhost:3000/contactUs"
+                  let  url="http://studdy-buddyy.herokuapp.com/contactUs"
                   let data=new URLSearchParams()
                  
                   for(const pair of new FormData(e.target) ){
