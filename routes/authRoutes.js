@@ -286,7 +286,7 @@ router.post('/setReminder',auth,(req,res)=>{
         `,
     };
 
-//    cron.schedule(`${minute} ${hour} ${dom} ${month} *`,()=>{
+   cron.schedule(`${minute} ${hour} ${dom} ${month} *`,()=>{
         console.log("sent")
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
@@ -297,7 +297,12 @@ router.post('/setReminder',auth,(req,res)=>{
             return res.json({success:true,message:"message sent"})
             }
         })
-    // })
+    },{
+        scheduled: true,
+        timezone: "Asia/Kolkata"
+      }
+
+    )
     res.redirect('/subjects')
 })
 
