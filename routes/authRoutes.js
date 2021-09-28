@@ -279,7 +279,7 @@ router.post('/setReminder',auth,(req,res)=>{
 
     var mailOptions = {
         from: 'shantys502@gmail.com',
-        to: 'shantys502@gmail.com',
+        to: req.user.email,
         subject: "Reminder from Study-buddy",
         html: `
         Message : ${message}
