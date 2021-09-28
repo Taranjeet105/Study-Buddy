@@ -12,6 +12,7 @@ app.use(express.urlencoded({extended:false}))
 
 router.get('/',async (req,res)=>{
 
+    console.log("home")
     try{
         const token=req.cookies.jwt
         const verifyUser=jwt.verify(token,process.env.SECRET_KEY)
@@ -33,23 +34,25 @@ router.get('/',async (req,res)=>{
 
 router.get('/subjects',auth,(req,res)=>{   // auth is a middleware which verfies if user is authenticated or not
     // console.log(req.user.subjects)
+    console.log("subjects")
     res.render('subjects',{userInfo:req.user})
    })
    
 
 
 router.get('/homepage',auth,(req,res)=>{
-
+    console.log("homepage")
     res.render("homepage",{userInfo:req.user})
 })
 
-router.get('/subjects',auth, (req,res)=>{
+// router.get('/subjects',auth, (req,res)=>{
    
-    res.render('subjects',{userInfo:req.user})
+//     res.render('subjects',{userInfo:req.user})
    
-})
+// })
 
 router.post('/addSubject',auth,async (req,res)=>{
+    console.log("addSubject")
     try{
         // console.log(req.body)
        req.user.subjects= await req.user.subjects.concat({
