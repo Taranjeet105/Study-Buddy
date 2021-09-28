@@ -270,6 +270,7 @@ router.post('/setReminder',auth,(req,res)=>{
        
     var transporter = nodemailer.createTransport({
         service: "Gmail",
+        port: 465,
         auth: {
           user: process.env.EMAIL,
           pass: process.env.PASSWORD,
@@ -346,9 +347,7 @@ router.post('/contactUs',(req,res)=>{
     });
 
 
-
-
-    // res.render('contactUs')
+    // res.redirect('contactUs')
 })
 
 router.get('/aboutUs',(req,res)=>{
