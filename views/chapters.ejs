@@ -1,201 +1,220 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>chapters</title>
-    <style>
-      .background_img {
-        background-image: url('https://wallpaperaccess.com/full/2785188.jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: 100% 100%;
-        width: 100vw;
-        height: 100vh;
-        
-      }
-        .flex-class{
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+  <title>chapters</title>
+  <style>
+    .background_img {
+      background-image: url('https://wallpaperaccess.com/full/2785188.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+      width: 100vw;
+      height: 100vh;
+
+    }
+
+    .flex-class {
       display: flex;
-      flex-wrap:wrap;
+      flex-wrap: wrap;
       justify-content: space-between;
       width: 100vw;
     }
-    
+  </style>
+</head>
 
-    </style>
-  </head>
-  <body>
-  
-    <%- include('partials/navbar2') %>
+<body>
+
+  <%- include('partials/navbar2') %>
     <!-- Optional JavaScript; choose one of the two! -->
-  
-       
+
+
     <!-- <div class="container flex-class"> -->
-      <% let counter=0%>
+    <% let counter=0%>
       <% let chapterCount=0%>
-      
+
         <% userInfo.subjects[subjectNumber].subject.chapters.forEach(chapter=>{ %>
-          <% let url="/editChapter/"%>
-          <% let url2="/readChapter/" %>
-          <% let url3="/deleteChapter/" %>
-              <% url=url+subjectNumber.toString()+","+chapterCount.toString()%>
-              <% url2=url2+subjectNumber.toString()+","+chapterCount.toString()%>    
-              <% url3=url3+subjectNumber.toString()+","+chapterCount.toString() %>      
-              <% if(counter==0){ %>
+          <% let url="/editChapter/" %>
+            <% let url2="/readChapter/" %>
+              <% let url3="/deleteChapter/" %>
+                <% url=url+subjectNumber.toString()+","+chapterCount.toString()%>
+                  <% url2=url2+subjectNumber.toString()+","+chapterCount.toString()%>
+                    <% url3=url3+subjectNumber.toString()+","+chapterCount.toString() %>
+                      <% if(counter==0){ %>
 
-                <div class="alert alert-primary chapter flex-class" >
-                  <div class="container flex-class">
-                    <div>
-                 <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
-                </div>
-                <div class="buttons">
-                  <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3 %>>Delete</a></button>
-                  <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
-                </div>
-                  </div>
-              </div>
-           
-            <% } else if(counter==1){ %>
-                <div class="alert alert-secondary flex-class" >
-                  <div class="container flex-class">
-                    <div>
-                      <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
-                </div>
-                <div class="buttons">
-                  <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3 %>>Delete</a></button>
-                  <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
-                </div>
-                  </div>
-                </div>
-               
-                <% } else if(counter==2){ %>
-                <div class="alert alert-success flex-class" >
-                  <div class="container flex-class">
-                    <div>
-                      <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
-                </div>
-                <div class="buttons">
-                  <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3 %>>Delete</a></button>
-                  <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
-                </div>
-                  </div>
-                </div>
-              
-                <% } else if(counter==3){ %>
-                <div class="alert alert-danger flex-class" >
-                  <div class="container flex-class">
-                    <div>
-                      <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
-                </div>
-                <div class="buttons">
-                  <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3 %>>Delete</a></button>
-                  <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
-                </div>
-                  </div>
-                </div>
-               
-                <% } else if(counter==4){ %>
-                <div class="alert alert-warning flex-class" >
-                  <div class="container flex-class">
-                    <div>
-                      <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
-                </div>
-                <div class="buttons">
-                  <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3 %>>Delete</a></button>
-                  <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
-                </div>
-                  </div>
-                </div>
-          
-                <% } else if(counter==5){ %>
-                <div class="alert alert-info flex-class" >
-                  <div class="container flex-class">
-                    <div>
-                      <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
-                    </div>
-                <div class="buttons">
-                  <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3 %>>Delete</a></button>
-                  <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>>Edit</a></button>
-                </div>
-                  </div>
-                </div>
-              
-                <% } else if(counter==6){ %>
-                <div class="alert alert-dark flex-class" >
-                  <div class="container flex-class">
-                    <div>
-                      <a href=<%=url2%>>Chapter name: <%= chapter.name %></a> 
-                </div>
-                <div class="buttons">
-                  <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3 %>>Delete</a></button>
-                  <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url %>">Edit</a></button>
-                </div>
-                  </div>
-                </div>   
-               
-                <% } %>
-                
-               <%  counter=(counter+1)%7 %>
-                <% chapterCount=chapterCount+1 %>
-      <% }) %>
+                        <div class="alert alert-primary chapter flex-class">
+                          <div class="container flex-class">
+                            <div>
+                              <a href=<%=url2%>>Chapter name: <%= chapter.name %></a>
+                            </div>
+                            <div class="buttons">
+                              <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3
+                                  %>>Delete</a></button>
+                              <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url
+                                  %>>Edit</a></button>
+                            </div>
+                          </div>
+                        </div>
 
-    <!-- </div> -->
+                        <% } else if(counter==1){ %>
+                          <div class="alert alert-secondary flex-class">
+                            <div class="container flex-class">
+                              <div>
+                                <a href=<%=url2%>>Chapter name: <%= chapter.name %></a>
+                              </div>
+                              <div class="buttons">
+                                <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3
+                                    %>>Delete</a></button>
+                                <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url
+                                    %>>Edit</a></button>
+                              </div>
+                            </div>
+                          </div>
 
-    <button type="button" class="btn btn-primary add-subject" data-bs-toggle="modal" data-bs-target="#addChapterModal">
-      Add Chapter
-    </button>
-    
-    <!-- Modal -->
-    <div class="modal fade" id="addChapterModal" tabindex="-1" aria-labelledby="addChapterModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="addChapterModalLabel">Add Chapter</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <% let addChapterUrl="/addChapter/"+subjectNumber.toString() %>
-            <form action=<%=addChapterUrl %> method="POST">
-              <div class="mb-3">
-                <label for="chapterName" class="form-label">Chapter name: </label>
-                <input type="text" class="form-control" id="chapterName" name="chapter_name" aria-describedby="emailHelp">
-                
-              </div>
-              <!-- <div class="mb-3">
-                <label for="subjectDescription" class="form-label">Description</label>
-                <input type="text" class="form-control" id="subjectDescription" name="subject_description">
-              </div>
-              <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-              </div> -->
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
-          <div class="modal-footer">
-       
-              <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
-            
-            
-          </div>
-        </div>
-      </div>
-    </div>
-    
+                          <% } else if(counter==2){ %>
+                            <div class="alert alert-success flex-class">
+                              <div class="container flex-class">
+                                <div>
+                                  <a href=<%=url2%>>Chapter name: <%= chapter.name %></a>
+                                </div>
+                                <div class="buttons">
+                                  <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3
+                                      %>>Delete</a></button>
+                                  <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url
+                                      %>>Edit</a></button>
+                                </div>
+                              </div>
+                            </div>
+
+                            <% } else if(counter==3){ %>
+                              <div class="alert alert-danger flex-class">
+                                <div class="container flex-class">
+                                  <div>
+                                    <a href=<%=url2%>>Chapter name: <%= chapter.name %></a>
+                                  </div>
+                                  <div class="buttons">
+                                    <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3
+                                        %>>Delete</a></button>
+                                    <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url
+                                        %>>Edit</a></button>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <% } else if(counter==4){ %>
+                                <div class="alert alert-warning flex-class">
+                                  <div class="container flex-class">
+                                    <div>
+                                      <a href=<%=url2%>>Chapter name: <%= chapter.name %></a>
+                                    </div>
+                                    <div class="buttons">
+                                      <button type="button" class="btn btn-warning" class="deleteChapter"><a
+                                          href=<%=url3 %>>Delete</a></button>
+                                      <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url
+                                          %>>Edit</a></button>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <% } else if(counter==5){ %>
+                                  <div class="alert alert-info flex-class">
+                                    <div class="container flex-class">
+                                      <div>
+                                        <a href=<%=url2%>>Chapter name: <%= chapter.name %></a>
+                                      </div>
+                                      <div class="buttons">
+                                        <button type="button" class="btn btn-warning" class="deleteChapter"><a
+                                            href=<%=url3 %>>Delete</a></button>
+                                        <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url
+                                            %>>Edit</a></button>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <% } else if(counter==6){ %>
+                                    <div class="alert alert-dark flex-class">
+                                      <div class="container flex-class">
+                                        <div>
+                                          <a href=<%=url2%>>Chapter name: <%= chapter.name %></a>
+                                        </div>
+                                        <div class="buttons">
+                                          <button type="button" class="btn btn-warning" class="deleteChapter"><a
+                                              href=<%=url3 %>>Delete</a></button>
+                                          <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url
+                                              %>">Edit</a></button>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <% } %>
+
+                                      <% counter=(counter+1)%7 %>
+                                        <% chapterCount=chapterCount+1 %>
+                                          <% }) %>
+
+                                            <!-- </div> -->
+
+                                            <button type="button" class="btn btn-primary add-subject"
+                                              data-bs-toggle="modal" data-bs-target="#addChapterModal">
+                                              Add Chapter
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="addChapterModal" tabindex="-1"
+                                              aria-labelledby="addChapterModalLabel" aria-hidden="true">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title" id="addChapterModalLabel">Add Chapter</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                      aria-label="Close"></button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <% let addChapterUrl="/addChapter/" +subjectNumber.toString() %>
+                                                      <form action=<%=addChapterUrl %> method="POST">
+                                                        <div class="mb-3">
+                                                          <label for="chapterName" class="form-label">Chapter name:
+                                                          </label>
+                                                          <input type="text" class="form-control" id="chapterName"
+                                                            name="chapter_name" aria-describedby="emailHelp">
+
+                                                        </div>
+
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                      </form>
+                                                  </div>
+                                                  <div class="modal-footer">
+
+                                                    <button type="button" class="btn btn-secondary "
+                                                      data-bs-dismiss="modal">Close</button>
 
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
+
+
+                                            <!-- Option 1: Bootstrap Bundle with Popper -->
+                                            <script
+                                              src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+                                              integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+                                              crossorigin="anonymous"></script>
+
+                                            <!-- Option 2: Separate Popper and Bootstrap JS -->
+                                            <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
     -->
-  </body>
+</body>
+
 </html>

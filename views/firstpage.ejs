@@ -1,318 +1,321 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap');
-      @import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
-      </style>
-
-     <style>
-
-        .style1{
-          font-family: 'Roboto', sans-serif;
-        }
-
-        .style2{
-          font-family: 'Italianno', cursive;
-        }
-
-        .style1css{
-          text-align: center; 
-          font-size: 65px;
-        }
-
-        .style2css{
-          text-align: center;
-           font-size: 50px;
-        }
-
-        .login_signIn_box {
-          width: 500px;
-          height: 300px;
-          position: absolute;
-          bottom: 20px;
-          left: 30px;
-          
-        }
-
-        @media screen and (max-width: 500px) {
-          .style1css{
-          text-align: center; 
-          font-size: 40px;
-        }
-
-        .style2css{
-          text-align: center;
-           font-size: 25px;
-        }
-
-        .login_signIn_box {
-          width: 300px;
-          height: 300px;
-          position: absolute;
-          bottom: 7px;
-          left: 7px;
-          
-        }
-        }
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
 
-  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+  </style>
 
-        
-        @media screen and (max-width: 300px) {
-          .style1css{
-          text-align: center; 
-          font-size: 20px;
-        }
+  <style>
+    .style1 {
+      font-family: 'Roboto', sans-serif;
+    }
 
-        .style2css{
-          text-align: center;
-           font-size: 15px;
-        }
+    .style2 {
+      font-family: 'Italianno', cursive;
+    }
 
-        .login_signIn_box {
-          width: 150px;
-          height: 150px;
-          position: absolute;
-          bottom: 3px;
-          left: 3px;
-          
-        }
-        }
+    .style1css {
+      text-align: center;
+      font-size: 65px;
+    }
+
+    .style2css {
+      text-align: center;
+      font-size: 50px;
+    }
+
+    .login_signIn_box {
+      width: 500px;
+      height: 300px;
+      position: absolute;
+      bottom: 20px;
+      left: 30px;
+
+    }
+
+    @media screen and (max-width: 500px) {
+      .style1css {
+        text-align: center;
+        font-size: 40px;
+      }
+
+      .style2css {
+        text-align: center;
+        font-size: 25px;
+      }
+
+      .login_signIn_box {
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        bottom: 7px;
+        left: 7px;
+
+      }
+    }
+
+    @media screen and (max-width: 300px) {
+      .style1css {
+        text-align: center;
+        font-size: 20px;
+      }
+
+      .style2css {
+        text-align: center;
+        font-size: 15px;
+      }
+
+      .login_signIn_box {
+        width: 150px;
+        height: 150px;
+        position: absolute;
+        bottom: 3px;
+        left: 3px;
+
+      }
+    }
 
 
-      .flex-class{
+    .flex-class {
       display: flex;
-      flex-wrap:wrap;
+      flex-wrap: wrap;
       justify-content: space-around;
       /* width: 100vw; */
     }
-  a:link {
-    color: black;
-  text-decoration: none;
-}
 
-a:visited {
-  color: black;
-  text-decoration: none;
-}
+    a:link {
+      color: black;
+      text-decoration: none;
+    }
 
-a:hover {
-  color: blue;
-  /* text-decoration: underline; */
-}
+    a:visited {
+      color: black;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: blue;
+
+    }
 
     .background_img {
-        background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: 100% 100%;
-        width: 100vw;
-        height: 100vh;
-       
-        
-      }
-      .contactUsAndAboutUs{
-        position: absolute;
-        right:5px;
-        top:0px;
-      }
-     </style>
+      background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+      width: 100vw;
+      height: 100vh;
 
-    <title>Study-Buddy</title>
-  </head>
 
-  <body>
-  
-    
-    <!-- <%- include('partials/firstpagenavbar') %> -->
+    }
 
-    <div class="contactUsAndAboutUs">
-      <span style="font-size: 20px;"> <a href="/contactUs"> Contact Us</a></span>
-      <span>|</span>
-      <span style="font-size: 20px;"> <a href="aboutUs">About Us</a> </span>
-    </div>
-   <div class="background_img" >
-    <div  class="login_signIn_box " style="opacity: 1;">
-      <h1  class="style1 style1css">Access your Data</h1>
-      <h1  class="style1 style1css">Anywhere</h1>
+    .contactUsAndAboutUs {
+      position: absolute;
+      right: 5px;
+      top: 0px;
+    }
+  </style>
+
+  <title>Study-Buddy</title>
+</head>
+
+<body>
+
+
+  <div class="contactUsAndAboutUs">
+    <span style="font-size: 20px;"> <a href="/contactUs"> Contact Us</a></span>
+    <span>|</span>
+    <span style="font-size: 20px;"> <a href="aboutUs">About Us</a> </span>
+  </div>
+  <div class="background_img">
+    <div class="login_signIn_box " style="opacity: 1;">
+      <h1 class="style1 style1css">Access your Data</h1>
+      <h1 class="style1 style1css">Anywhere</h1>
       <p class="style2 style2css">Easy to acces data from remote</p>
 
-      <div class="flex-class" >
-          <!-- Button trigger modal login-->
-          <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Login
-          </button>
+      <div class="flex-class">
+        <!-- Button trigger modal login-->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Login
+        </button>
 
-          <!-- Button trigger modal signup-->
-          <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-            SignUp
-          </button>
+        <!-- Button trigger modal signup-->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+          SignUp
+        </button>
+      </div>
+    </div>
+
+
+    <!-- Modal login -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel1">Login</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/login" method="post" enctype="application/json">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input name="email" type="email" class="form-control" id="exampleInputEmail1"
+                  aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+
         </div>
+      </div>
     </div>
 
-      
-<!-- Modal login -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel1">Login</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Modal singup -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel2">Register</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <form id="myform">
+
+              <div class="mb-3">
+                <label for="SignInUserName" class="form-label">First Name</label>
+                <input name="SignInUserName" type="text" class="form-control" id="SignInUserName"
+                  aria-describedby="emailHelp2">
+
+              </div>
+
+              <div class="mb-3">
+                <label for="SignInLUserName" class="form-label">Last Name</label>
+                <input name="SignInLUserName" type="text" class="form-control" id="SignInLUserName"
+                  aria-describedby="emailHelp2">
+
+              </div>
+
+              <div class="mb-3">
+                <label for="SignInUserAge" class="form-label">Age</label>
+                <input name="SignInUserAge" type="number" class="form-control" id="SignInUserAge"
+                  aria-describedby="emailHelp2">
+
+              </div>
+
+
+              <div class="mb-3">
+                <label for="SignInUserGender" class="form-label">Gender</label>
+                <br>
+                Male
+                <input name="SignInUserGender" type="radio" id="SignInUserGenderMale" value='Male'>
+                Female
+                <input name="SignInUserGender" type="radio" id="SignInUserGenderFemale" value="Female">
+              </div>
+
+
+              <div class="mb-3">
+                <label for="SignInUserPhone" class="form-label">Phone</label>
+                <input name="SignInUserPhone" type="tel" class="form-control" id="SignInUserPhone"
+                  aria-describedby="emailHelp2">
+                <div id="emailHelp2" class="form-text">We'll never share your Mobile Number with anyone else.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="SignInEmail" class="form-label">Email address</label>
+                <input name="SignInEmail" type="email" class="form-control" id="SignInEmail"
+                  aria-describedby="emailHelp2">
+                <div id="emailHelp2" class="form-text">We'll never share your email with anyone else.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="SignInpassword" class="form-label">Password</label>
+                <input name="SignInpassword" type="password" class="form-control" id="SignInpassword">
+              </div>
+
+              <div class="mb-3">
+                <label for="cSignInpassword" class="form-label">Confirm Password</label>
+                <input name="cSignInpassword" type="password" class="form-control" id="cSignInpassword">
+              </div>
+
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+
+        </div>
       </div>
-      <div class="modal-body">
-        <form action="/login" method="post" enctype="application/json">
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input name="password" type="password" class="form-control" id="exampleInputPassword1">
-          </div>
-          <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
-    
-    </div>
-  </div>
-</div>
-
-<!-- Modal singup -->
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel2">Register</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        
-        <form id="myform">
-
-          <div class="mb-3">
-            <label for="SignInUserName" class="form-label" >First Name</label>
-            <input name="SignInUserName" type="text" class="form-control" id="SignInUserName" aria-describedby="emailHelp2">
-           
-          </div>
-
-          <div class="mb-3">
-            <label for="SignInLUserName" class="form-label" >Last Name</label>
-            <input name="SignInLUserName" type="text" class="form-control" id="SignInLUserName" aria-describedby="emailHelp2">
-         
-          </div>
-
-          <div class="mb-3">
-            <label for="SignInUserAge" class="form-label" >Age</label>
-            <input name="SignInUserAge" type="number" class="form-control" id="SignInUserAge" aria-describedby="emailHelp2">
-         
-          </div>
-
-
-          <div class="mb-3">
-            <label for="SignInUserGender" class="form-label" >Gender</label>
-            <br>
-            Male
-            <input name="SignInUserGender" type="radio"  id="SignInUserGenderMale" value='Male' >
-            Female
-            <input name="SignInUserGender" type="radio"  id="SignInUserGenderFemale" value="Female" >
-          </div>
-
-
-          <div class="mb-3">
-            <label for="SignInUserPhone" class="form-label" >Phone</label>
-            <input name="SignInUserPhone" type="tel" class="form-control" id="SignInUserPhone" aria-describedby="emailHelp2">
-            <div id="emailHelp2" class="form-text">We'll never share your Mobile Number with anyone else.</div>
-          </div>
-
-          <div class="mb-3">
-            <label for="SignInEmail" class="form-label" >Email address</label>
-            <input name="SignInEmail" type="email" class="form-control" id="SignInEmail" aria-describedby="emailHelp2">
-            <div id="emailHelp2" class="form-text">We'll never share your email with anyone else.</div>
-          </div>
-
-          <div class="mb-3">
-            <label for="SignInpassword" class="form-label" >Password</label>
-            <input name="SignInpassword" type="password" class="form-control" id="SignInpassword">
-          </div>
-
-          <div class="mb-3">
-            <label for="cSignInpassword" class="form-label" >Confirm Password</label>
-            <input name="cSignInpassword" type="password" class="form-control" id="cSignInpassword">
-          </div>
-
-          <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
-     
     </div>
   </div>
-</div>
-</div>
-<script>
+  <script>
 
-document.getElementById("myform").onsubmit=(e)=>{
-               
-               e.preventDefault()
-                let  url=("https://studdy-buddyy.herokuapp.com/SignIn")
-                let data=new URLSearchParams()
-               
-                for(const pair of new FormData(e.target) ){
-                    console.log(pair[0],pair[1])
-                    data.append(pair[0],pair[1])
-                }
-                fetch(url,{
-                    method:"post",
-                    body:data,
-                  
-                }).then(res=>res.json())
-                .then(result=>{
-                    console.log(result)
-                    if(result.status==true){
-                      alert(result.msg)
-                      location.reload()
-                    }else{
-                      alert(result.msg)
-                    }
-                }).catch(e=>console.log(e))
-                
-            }
+    document.getElementById("myform").onsubmit = (e) => {
 
-</script>
-     
+      e.preventDefault()
+      let url = ("http://localhost:3000/SignIn")
+      let data = new URLSearchParams()
 
-    <!-- Optional JavaScript; choose one of the two! -->
+      for (const pair of new FormData(e.target)) {
+        console.log(pair[0], pair[1])
+        data.append(pair[0], pair[1])
+      }
+      fetch(url, {
+        method: "post",
+        body: data,
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+      }).then(res => res.json())
+        .then(result => {
+          console.log(result)
+          if (result.status == true) {
+            alert(result.msg)
+            location.reload()
+          } else {
+            alert(result.msg)
+          }
+        }).catch(e => console.log(e))
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
+    }
+
+  </script>
+
+
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
     -->
-  
 
-  </body>
+
+</body>
+
 </html>
-
-
-

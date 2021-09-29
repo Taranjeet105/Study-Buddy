@@ -27,13 +27,8 @@ router.get('/',async (req,res)=>{
 
 })
 
-// router.get('/',(req,res)=>{
-   
-//     res.render('firstpage')
-// })
 
 router.get('/subjects',auth,(req,res)=>{   // auth is a middleware which verfies if user is authenticated or not
-    // console.log(req.user.subjects)
     console.log("subjects")
     res.render('subjects',{userInfo:req.user})
    })
@@ -45,11 +40,6 @@ router.get('/homepage',auth,(req,res)=>{
     res.render("homepage",{userInfo:req.user})
 })
 
-// router.get('/subjects',auth, (req,res)=>{
-   
-//     res.render('subjects',{userInfo:req.user})
-   
-// })
 
 router.post('/addSubject',auth,async (req,res)=>{
     console.log("addSubject")
@@ -246,10 +236,6 @@ router.post('/updateData',auth,(req,res)=>{
     res.json({msg:"updated"})
 })
 
-// router.get('/plan',auth,(req,res)=>{
-
-//     res.render('plan',{userInfo:req.user})
-// })
 
 router.post('/setReminder',auth,(req,res)=>{
 
@@ -263,8 +249,6 @@ router.post('/setReminder',auth,(req,res)=>{
     console.log(date)
     console.log(time)
     console.log(req.body)
-    // let date=req.body.phone
-    // let month=req.body.month
        
     var transporter = nodemailer.createTransport({
         service: "Gmail",
@@ -348,8 +332,6 @@ router.post('/contactUs',(req,res)=>{
         }
     });
 
-
-    // res.redirect('contactUs')
 })
 
 router.get('/aboutUs',(req,res)=>{

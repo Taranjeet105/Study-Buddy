@@ -1,80 +1,70 @@
-
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
-    <title>Editor</title>
-  </head>
-  <body>
-    <%- include('partials/navbar2') %>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
+  <title>Editor</title>
+</head>
+
+<body>
+  <%- include('partials/navbar2') %>
 
 
-    
+
     <div class="container">
-        <form id="myform">
-          <div id="editor" >
-            <p>This is some sample content.</p>
-          </div>
-          <button class="btn-primary" type="submit">Submit</button>
-       </form>
+      <form id="myform">
+        <div id="editor">
+          <p>This is some sample content.</p>
         </div>
-        
-        <script>
-            ClassicEditor
-                .create( document.querySelector( '#editor' ))
-                .catch( error => {
-                    console.error( error );
-                } );
-    
-                let subjectNum='<%-subjectNum%>'
-                let chapterNum='<%-chapterNum%>'
-                document.getElementById("myform").onsubmit=(e)=>{
-                    // e.preventDefault()
-                    console.log(e.target)
-                    let  url="https://studdy-buddyy.herokuapp.com/saveChapter/"+subjectNum+","+chapterNum
-                    let data=new URLSearchParams()
-                  
-                     let userDocuments=document.querySelector('.ck-content').innerHTML
-                    data.append("data",userDocuments)
-                    fetch(url,{
-                        method:"post",
-                        body:data,
-                       
-                    }).then(res=>res.text())
-                    .then(result=>{
-                        document.write(result)
-                    }).catch(err=>console.log(err))
-                    
-                }
-    
-                
-             
-    
-                
-        </script>
+        <button class="btn-primary" type="submit">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+          console.error(error);
+        });
+
+      let subjectNum = '<%-subjectNum%>'
+      let chapterNum = '<%-chapterNum%>'
+      document.getElementById("myform").onsubmit = (e) => {
+
+        console.log(e.target)
+        let url = "http://localhost:3000/saveChapter/" + subjectNum + "," + chapterNum
+        let data = new URLSearchParams()
+
+        let userDocuments = document.querySelector('.ck-content').innerHTML
+        data.append("data", userDocuments)
+        fetch(url, {
+          method: "post",
+          body: data,
+
+        }).then(res => res.text())
+          .then(result => {
+            document.write(result)
+          }).catch(err => console.log(err))
+
+      }
+    </script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"></script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
     -->
-  </body>
+</body>
+
 </html>
-
-
-
-
-
-
-
-
-
-

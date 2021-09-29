@@ -1,176 +1,188 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
 
-      .background_img {
-        background-image: url('https://img.freepik.com/free-photo/back-school-education-banner-background_8087-1192.jpg?size=626&ext=jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: 100% 100%;
-        width: 100vw;
-        height: 100vh;
-        
-      }
-    .flex-class{
+    .background_img {
+      background-image: url('https://img.freepik.com/free-photo/back-school-education-banner-background_8087-1192.jpg?size=626&ext=jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+      width: 100vw;
+      height: 100vh;
+
+    }
+
+    .flex-class {
       display: flex;
-      flex-wrap:wrap;
+      flex-wrap: wrap;
       justify-content: space-between;
 
     }
-    .flex-class2{
+
+    .flex-class2 {
       display: flex;
-      
-    }
-    .flex-elem2{
-      flex-basis: 200px;
-      /* position: relative; */
+
     }
 
-    .style1{
+    .flex-elem2 {
+      flex-basis: 200px;
+    }
+
+    .style1 {
       font-family: 'Pacifico', cursive;
 
     }
-    .style2{
+
+    .style2 {
       font-family: 'Roboto', sans-serif;
     }
-    .style1css{
+
+    .style1css {
       color: darkorange;
-     font-size: 25px;
+      font-size: 25px;
     }
-
   </style>
-    
-    <title>subject page!</title>
-  </head>
-  <body>
-  
-  
-    <%- include('partials/navbar2') %>
-  <div class="background_img flex-class">
+
+  <title>subject page!</title>
+</head>
+
+<body>
 
 
-    <div class="container flex-class ">
-  <div class="flex-elm1" >
-    <div class="container flex-class">
-     
-      <% let counter=0 %>
-      <% let counterimg=0 %>
-      <% let imgtype=["book","study","library"] %>
-    <% userInfo.subjects.forEach(subject=>{ %>
-        <div  class="card style1 " style=" opacity: 0.8; width: 200px; " id=<%=counter.toString()%> >
-          <% let imgtoshow="https://source.unsplash.com/1600x900/?"+imgtype[counterimg]%>
-          <img src=<%=imgtoshow %> class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">subject name: <%= subject.subject.name %></h5>
-            <p class="card-text">subject description: <%= subject.subject.description %></p>
+  <%- include('partials/navbar2') %>
+    <div class="background_img flex-class">
+
+
+      <div class="container flex-class ">
+        <div class="flex-elm1">
+          <div class="container flex-class">
+
+            <% let counter=0 %>
+              <% let counterimg=0 %>
+                <% let imgtype=["book","study","library"] %>
+                  <% userInfo.subjects.forEach(subject=>{ %>
+                    <div class="card style1 " style=" opacity: 0.8; width: 200px; " id=<%=counter.toString()%> >
+                      <% let imgtoshow="https://source.unsplash.com/1600x900/?" +imgtype[counterimg]%>
+                        <img src=<%=imgtoshow %> class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">subject name: <%= subject.subject.name %>
+                          </h5>
+                          <p class="card-text">subject description: <%= subject.subject.description %>
+                          </p>
+                        </div>
+
+                        <div class="card-body">
+                          <% let url="/chapters/" +counter.toString() %>
+                            <% let url2="/deleteSubject/" +counter.toString() %>
+                              <button type="button" class="btn btn-warning" class="deleteSubject"> <a href=<%=url2 %>
+                                  class="card-link">Delete</a></button>
+
+
+                              <button type="button" class="btn btn-info" class="deleteSubject"><a href=<%=url %>
+                                  class="card-link">Chapters</a></button>
+
+                        </div>
+                    </div>
+
+                    <% counter=counter+1 %>
+                      <% counterimg=(counterimg+1)%3 %>
+
+                        <% }) %>
           </div>
- 
-          <div class="card-body">
-            <% let url="/chapters/"+counter.toString() %>
-            <% let url2="/deleteSubject/"+counter.toString() %>
-            <button type="button" class="btn btn-warning" class="deleteSubject"> <a href=<%= url2 %> class="card-link">Delete</a></button>
-           
-            
-            <button type="button" class="btn btn-info" class="deleteSubject"><a href=<%= url %> class="card-link">Chapters</a></button>
-            
+        </div>
+        <!-- <button type="button" class="btn btn-dark add-subject" id="add-subjects">Add Subject</button> -->
+
+
+        <!-- Button trigger modal -->
+
+        <div class="parent">
+          <div class="formContainer">
+            <form action="/setReminder" method="POST">
+
+
+              <div class="mb-3">
+                <label for="timedate" class="form-label style1 style1css">Set Time</label>
+                <input name="timedate" type="datetime-local" class="form-control " id="timedate">
+              </div>
+
+              <div class="mb-3">
+                <label for="message" class="form-label style1 style1css">Message </label>
+                <textarea name="message" type="datetime-local" class="form-control" id="message"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
           </div>
-    </div>
-       
-        <% counter=counter+1 %>
-        <% counterimg=(counterimg+1)%3 %>
-
-  <% }) %>
-</div>
-</div>
-<!-- <button type="button" class="btn btn-dark add-subject" id="add-subjects">Add Subject</button> -->
-
-
-<!-- Button trigger modal -->
-
-  <div class="parent">
-    <div class="formContainer">
-  <form action="/setReminder" method="POST">
-
-
-        <div class="mb-3">
-          <label for="timedate" class="form-label style1 style1css">Set Time</label>
-          <input name="timedate" type="datetime-local" class="form-control " id="timedate">
         </div>
 
-        <div class="mb-3">
-          <label for="message" class="form-label style1 style1css">Message </label>
-          <textarea name="message" type="datetime-local" class="form-control" id="message"></textarea>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Subject</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form action="/addSubject" method="POST">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Subject name: </label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" name="subject_name"
+                    aria-describedby="emailHelp">
+
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Description</label>
+                  <input type="text" class="form-control" id="exampleInputPassword1" name="subject_description">
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+            <div class="modal-footer">
+
+              <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+
+
+            </div>
+          </div>
         </div>
+      </div>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
-</div>
 
-</div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Subject</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="/addSubject" method="POST">
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Subject name: </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" name="subject_name" aria-describedby="emailHelp">
-            
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Description</label>
-            <input type="text" class="form-control" id="exampleInputPassword1" name="subject_description">
-          </div>
-          <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
-      <div class="modal-footer">
-   
-          <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
-        
-        
-      </div>
     </div>
-  </div>
-</div>
-
-
-</div>
 
     <script>
-      document.getElementById('plus').style.display="block"
+      document.getElementById('plus').style.display = "block"
     </script>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"></script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
     -->
-  </body>
-</html>
+</body>
 
-        
+</html>
