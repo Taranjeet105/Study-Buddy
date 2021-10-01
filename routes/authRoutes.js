@@ -12,7 +12,6 @@ app.use(express.urlencoded({extended:false}))
 
 router.get('/',async (req,res)=>{
 
-    console.log("home")
     try{
         const token=req.cookies.jwt
         const verifyUser=jwt.verify(token,process.env.SECRET_KEY)
@@ -28,131 +27,10 @@ router.get('/',async (req,res)=>{
 })
 
 
-router.get('/subjects',auth,(req,res)=>{   // auth is a middleware which verfies if user is authenticated or not
-    console.log("subjects")
-    res.render('subjects',{userInfo:req.user})
-   })
-   
-
-
 router.get('/homepage',auth,(req,res)=>{
-    console.log("homepage")
     res.render("homepage",{userInfo:req.user})
 })
 
-
-router.post('/addSubject',auth,async (req,res)=>{
-    console.log("addSubject")
-    try{
-        // console.log(req.body)
-       req.user.subjects= await req.user.subjects.concat({
-            subject:{
-                name:req.body.subject_name,
-                description:req.body.subject_description,
-                chapters:[]
-            }
-        })
-        await req.user.save()
-        res.redirect('/subjects')
-    }catch(error){
-        res.status(401).send(error)
-    }     
-})
-
-
-router.get('/deleteSubject/:id',auth,async (req,res)=>{
-    try{
-        let subI=parseInt(req.params.id)
-        await req.user.subjects.splice(subI,1)
-        await req.user.save()
-        res.render('subjects',{userInfo:req.user})
-    }catch(e){
-        res.status(401).send(e)
-    }
-})
-
-router.get('/chapters/:id',auth,async (req,res)=>{
-    try{
-   
-    let subjectNumber=parseInt(req.params.id);
-   
-    res.render('chapters',{userInfo:req.user,subjectNumber:parseInt(req.params.id)})
-    }catch(e){
-        res.status(401).send(e)
-    }
-    
-})
-
-router.post('/addChapter/:id',auth,async (req,res)=>{
-    
-    try{
-        console.log(req.params.id)
-        let subjectId=parseInt(req.params.id)
-        console.log(req.user.subjects[subjectId])
-        req.user.subjects[subjectId].subject.chapters=await req.user.subjects[subjectId].subject.chapters.concat({
-            name:req.body.chapter_name,
-            content:""
-        })
-        await req.user.save()
-        res.redirect('/chapters/'+req.params.id)
-    }catch(error){
-        res.status(401).send(error)
-    }
-
-
-})
-
-router.get('/editChapter/:id',auth,(req,res)=>{
-       
-        let chapterToEdit=req.params.id.split(",")
-        console.log(chapterToEdit[0])
-        console.log(chapterToEdit[1])
-    res.render('editor',{userInfo:req.user,subjectNum:chapterToEdit[0],chapterNum:chapterToEdit[1]})
-})
-
-router.post('/saveChapter/:id',auth, async (req,res)=>{
-    try{
-
-        let chapterToEdit=req.params.id.split(",") // subject number , chapter number
-        req.user.subjects[parseInt(chapterToEdit[0])].subject.chapters[parseInt(chapterToEdit[1])].content=JSON.stringify(req.body)
-        await req.user.save()
-
-        res.render("readChapter",{userInfo:req.user,editorHtml:req.body.data})
-    }catch(e){
-        console.log(e)
-        res.status(401).send(e)
-    }
-   
-})
-
-router.get('/deleteChapter/:id',auth,async (req,res)=>{
-    try{
-        let chapterToDelete=req.params.id.split(",")
-        let subI=parseInt(chapterToDelete[0])
-        let chapI=parseInt(chapterToDelete[1])
-        console.log(subI)
-        console.log(chapI)
-        await req.user.subjects[subI].subject.chapters.splice(chapI,1)
-        await req.user.save()
-        res.render('chapters',{userInfo:req.user,subjectNumber:subI})
-    }catch(e){
-        console.log(e)
-        res.status(401).send(e)
-    }
-})
-
-router.get('/readChapter/:id',auth, async (req,res)=>{
-   
-    try{
-        let chapterToRead=req.params.id.split(",") // subject number , chapter number
-        let html=await req.user.subjects[parseInt(chapterToRead[0])].subject.chapters[parseInt(chapterToRead[1])].content
-        html=JSON.parse(html)
-        res.render("readChapter",{userInfo:req.user,editorHtml:html.data})
-    }catch(e){
-        res.render('readChapter',{userInfo:req.user,editorHtml:""})
-    }
-
-})
 
  router.post("/signIn",async (req,res)=>{
   try{
@@ -172,8 +50,7 @@ router.get('/readChapter/:id',auth, async (req,res)=>{
          // middleware is set between getting data and saving data in models
 
          const resForToken=await user.generateAuthToken()
-         console.log("token response")
-         console.log(resForToken)
+    
          // res.cookie() function is used to set the cookie name to value.
          // the value parameter may be a string or object converted to json.
          // res.cookie(name,value,{expires:new Date(Date.now()+3000), httpOnly:true,secure:true});
@@ -223,17 +100,11 @@ router.get('/logout',auth,async (req,res)=>{
         return currToken.token!=req.token
     })
     res.clearCookie("jwt")
-    console.log("Successfully logged out")
     const userInfo= await req.user.save()
     res.redirect('/')
  }catch(error){
   res.status(401).send(error)
  }
-})
-
-router.post('/updateData',auth,(req,res)=>{
-    console.log(req.body)
-    res.json({msg:"updated"})
 })
 
 
@@ -246,10 +117,7 @@ router.post('/setReminder',auth,(req,res)=>{
     let minute=time[1]
     let month=date[1]
     let dom=date[2]
-    console.log(date)
-    console.log(time)
-    console.log(req.body)
-       
+    
     var transporter = nodemailer.createTransport({
         service: "Gmail",
         auth: {
@@ -269,7 +137,7 @@ router.post('/setReminder',auth,(req,res)=>{
     };
 
    cron.schedule(`${minute} ${hour} ${dom} ${month} *`,()=>{
-        console.log("sent")
+        
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
               console.log(error);
@@ -293,7 +161,7 @@ router.get('/contactUs',(req,res)=>{
 })
 
 router.post('/contactUs',(req,res)=>{
-    console.log(req.body)
+   
     let name=req.body.name
     let senderEmail=req.body.email
     let phone=req.body.phone

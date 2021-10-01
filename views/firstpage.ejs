@@ -110,7 +110,7 @@
     }
 
     .background_img {
-      background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80');
+      background-image: url('../backgroundImages/firstpageBackground.jpg');
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: 100% 100%;
@@ -275,7 +275,7 @@
     document.getElementById("myform").onsubmit = (e) => {
 
       e.preventDefault()
-      let url = ("http://localhost:3000/SignIn")
+      let url = ("https://studdy-buddyy.herokuapp.com/SignIn")
       let data = new URLSearchParams()
 
       for (const pair of new FormData(e.target)) {

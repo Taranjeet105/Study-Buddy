@@ -10,6 +10,8 @@
   "author": "Taranjeet",
   "license": "ISC",
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^30.0.0",
+    "@editorjs/editorjs": "^2.22.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
@@ -19,11 +21,12 @@
     "express": "^4.17.1",
     "hbs": "^4.1.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.13.8",
+    "mongoose": "^5.13.9",
     "node-cron": "^3.0.0",
     "node-mailer": "^0.1.1",
     "node-schedule": "^2.0.0",
     "nodemailer": "^6.6.5",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.13",
+    "path": "^0.12.7"
   }
 }

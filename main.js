@@ -1,5 +1,6 @@
 const express=require('express')
 require('dotenv').config()
+const path=require('path')
 const cookieParser=require('cookie-parser')
 const bodyParser=require('body-parser')
 const mongoose=require('mongoose')
@@ -17,11 +18,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}))
 
 const authRoutes=require('./routes/authRoutes')
+const chapterRoutes=require('./routes/chapterRoutes')
+const subjectRoutes=require('./routes/subjectsRoutes')
+// const staticPath=path.join(__dirname,'./public/editorcontent')
+const backgroundImgPath=path.join(__dirname,'./assets')
+console.log(backgroundImgPath)
+// app.use(express.static(staticPath))
+app.use(express.static(backgroundImgPath))
 
 app.use(cors())
 app.set('view engine','ejs')
 app.use(authRoutes)
-
+app.use(chapterRoutes)
+app.use(subjectRoutes)
 mongoose.connect(mongoUrl,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
