@@ -45,7 +45,12 @@ const userSchema=new mongoose.Schema({
             },
             content:{
                 type:String
-            }
+            },
+            files:[{
+                name:String,
+                data: Buffer,
+                contentType: String
+            }]
            }]
     }
    }],

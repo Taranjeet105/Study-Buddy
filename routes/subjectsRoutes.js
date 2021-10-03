@@ -1,6 +1,10 @@
 const express=require('express')
 const router=express.Router()
 const auth=require('../middleware/auth')
+const multer=require('multer')
+const fs=require('fs')
+const path=require('path')
+const upload=require('../middleware/fileUploader')
 app=express()
 app.use(express.urlencoded({extended:false}))
 
@@ -28,6 +32,32 @@ router.get('/subjects',auth,(req,res)=>{   // auth is a middleware which verfies
     }     
 })
 
+/////////////////////--------------testing-----------------/////////////
+
+
+// Step 7 - the GET request handler that provides the HTML UI
+ 
+// router.get('/testing/:id',auth, (req, res) => {
+
+//     // console.log(req.user)
+//     // res.send("Testing")
+//     let indices=req.params.id.split(',')
+//         let subjI=parseInt(indices[0])
+//         let chapI=parseInt(indices[1])
+//         console.log(req.user.subjects[subjI].subject.chapters[chapI].files)
+//         let files=req.user.subjects[subjI].subject.chapters[chapI].files
+//         // res.send("Testing")
+//     res.render('testing',{files:files})
+// });
+
+
+/////////////////----------------------------------------//////////////
+
+
+
+
+
+///////////////////////////
 
 router.get('/deleteSubject/:id',auth,async (req,res)=>{
     try{

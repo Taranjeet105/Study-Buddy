@@ -27,6 +27,18 @@
       </form>
     </div>
 
+
+    <div class="container">
+      <% url="/files/"+subjectNum+","+chapterNum %>
+      <form id="uploadFile" action=<%=url %> method="POST" enctype="multipart/form-data">
+        <input type="text" name="documentName" id="documentName">
+        <input type="file" name="userFile"/>
+        <button type="submit">upload</button>
+      </form>
+    </div>
+
+    <% url="/filesOfchapter/"+subjectNum+","+chapterNum %>
+    <button type="button" class="btn btn-outline-primary"> <a href=<%=url%>>Files </a> </button>
     <script>
       ClassicEditor
         .create(document.querySelector('#editor'))
@@ -53,7 +65,45 @@
             document.write(result)
           }).catch(err => console.log(err))
 
+          
       }
+
+
+
+/////////////////////////////////////////////////////////
+
+
+// document.getElementById("uploadFile").onsubmit=(e)=>{
+//                 e.preventDefault()
+//                 console.log(e.target)
+//                 let  url="http://localhost:3000/files/"+subjectNum+","+chapterNum
+//                 let data=new URLSearchParams()
+               
+//                 for(const pair of new FormData(e.target) ){
+                    
+//                     data.append(pair[0],pair[1])
+//                 }
+//                 fetch(url,{
+//                     method:"post",
+//                     body:data,
+
+//                 }).then(res=>res.json())
+//                 .then(result=>{
+//                     console.log(result)
+                  
+//                 })
+//                 // location.reload()
+//             }
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////
+      
     </script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Files</title>
+</head>
+<body>
+    <h1>Files</h1>
+    <div>
+        <% files.forEach(function(file) { %>
+        <div>
+            <div>
+
+                <embed type="application/pdf" 
+src="data:<%=file.contentType%>;base64,
+                     <%=file.data.toString('base64')%>" 
+width="100%" height="500" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html" 
+background-color="0xFF525659" top-toolbar-height="56" full-frame="" internalinstanceid="21" 
+title="CHROME">
+
+                <div>
+           
+                </div>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+</body>
+</html>

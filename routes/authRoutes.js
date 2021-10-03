@@ -37,7 +37,7 @@ router.get('/homepage',auth,(req,res)=>{
 
   
     if(req.body.SignInpassword==req.body.cSignInpassword){
-        const  user=new User({
+        const user=new User({
             firstname:req.body.SignInUserName,
             lastname: req.body.SignInLUserName,
             age: req.body.SignInUserAge,

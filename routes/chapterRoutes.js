@@ -1,6 +1,9 @@
 const express=require('express')
 const router=express.Router()
 const auth=require('../middleware/auth')
+const upload=require('../middleware/fileUploader')
+const fs=require('fs')
+const path=require('path')
 app=express()
 app.use(express.urlencoded({extended:false}))
 
@@ -84,4 +87,35 @@ router.get('/readChapter/:id',auth, async (req,res)=>{
     }
 
 })
+
+
+router.post('/files/:id',auth,upload.single('userFile'), async (req,res)=>{
+    try{
+        let indices=req.params.id.split(',')
+        let subjI=parseInt(indices[0])
+        let chapI=parseInt(indices[1])
+        req.user.subjects[subjI].subject.chapters[chapI].files=await req.user.subjects[subjI].subject.chapters[chapI].files.concat({
+         name:req.body.documentName,
+         data: fs.readFileSync(path.join(__dirname + '../../uploads/' + req.file.filename)),
+         contentType: 'application/pdf'
+        })
+        await req.user.save()
+         res.json({status:true,msg:"succesfully uploaded",data:req.body})
+    }catch(e){
+        console.log(e)
+        res.status(401).send(e)
+    }
+   
+})
+
+
+router.get('/filesofchapter/:id',auth, (req, res) => {
+
+    let indices=req.params.id.split(',')
+        let subjI=parseInt(indices[0])
+        let chapI=parseInt(indices[1])
+        console.log(req.user.subjects[subjI].subject.chapters[chapI].files)
+        let files=req.user.subjects[subjI].subject.chapters[chapI].files
+    res.render('showFiles',{files:files})
+});
 module.exports=router

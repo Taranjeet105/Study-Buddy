@@ -6,6 +6,7 @@ const bodyParser=require('body-parser')
 const mongoose=require('mongoose')
 const {mongoUrl}=require('./config/keys')
 const cors = require('cors');
+const multer=require('multer')
 const app=express()
 
 const PORT= process.env.PORT || 3000
@@ -28,9 +29,15 @@ app.use(express.static(backgroundImgPath))
 
 app.use(cors())
 app.set('view engine','ejs')
+
+
+
 app.use(authRoutes)
 app.use(chapterRoutes)
 app.use(subjectRoutes)
+
+
+
 mongoose.connect(mongoUrl,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
