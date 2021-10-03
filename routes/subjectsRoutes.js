@@ -52,7 +52,25 @@ router.get('/subjects',auth,(req,res)=>{   // auth is a middleware which verfies
 
 
 /////////////////----------------------------------------//////////////
-
+router.post('/files/:id',auth,upload.single('userFile'), async (req,res)=>{
+    try{
+        let indices=req.params.id.split(',')
+        let subjI=parseInt(indices[0])
+        let chapI=parseInt(indices[1])
+ 
+        req.user.subjects[subjI].subject.chapters[chapI].files=await req.user.subjects[subjI].subject.chapters[chapI].files.concat({
+         name:req.body.documentName,
+         data: fs.readFileSync(path.join(__dirname + '../../uploads/' + req.file.filename)),
+         contentType: 'application/pdf'
+        })
+        await req.user.save()
+         res.json({status:true,msg:"succesfully uploaded",data:req.body})
+    }catch(e){
+        console.log(e)
+        res.status(401).send(e)
+    }
+   
+})
 
 
 
