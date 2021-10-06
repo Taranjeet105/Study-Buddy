@@ -18,14 +18,20 @@ app.use(express.urlencoded({extended:false}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}))
 
+app.get('/test',(req,res)=>{
+    res.render('testing')
+})
 const authRoutes=require('./routes/authRoutes')
 const chapterRoutes=require('./routes/chapterRoutes')
 const subjectRoutes=require('./routes/subjectsRoutes')
 // const staticPath=path.join(__dirname,'./public/editorcontent')
 const backgroundImgPath=path.join(__dirname,'./assets')
-console.log(backgroundImgPath)
+const public=path.join(__dirname,'./public')
+const uploads=path.join(__dirname,'./uploads')
 // app.use(express.static(staticPath))
 app.use(express.static(backgroundImgPath))
+app.use(express.static(public))
+app.use(express.static(uploads))
 
 app.use(cors())
 app.set('view engine','ejs')
