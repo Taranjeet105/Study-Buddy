@@ -1,5 +1,5 @@
 
-const url = '../../summerprit_singh_EXP8.pdf';
+const url = '../../summerprit_singh_EXP8.pdf'; //'<%-location%>'  // location 
 console.log(url)
 let pdfDoc = null,
   pageNum = 1,

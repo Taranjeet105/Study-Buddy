@@ -18,9 +18,7 @@ app.use(express.urlencoded({extended:false}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}))
 
-app.get('/test',(req,res)=>{
-    res.render('testing')
-})
+
 const authRoutes=require('./routes/authRoutes')
 const chapterRoutes=require('./routes/chapterRoutes')
 const subjectRoutes=require('./routes/subjectsRoutes')

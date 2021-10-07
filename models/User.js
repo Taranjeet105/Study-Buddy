@@ -48,8 +48,8 @@ const userSchema=new mongoose.Schema({
             },
             files:[{
                 name:String,
-                data: Buffer,
-                contentType: String
+                location: String,  // add location
+                // contentType: String  // remove it
             }]
            }]
     }

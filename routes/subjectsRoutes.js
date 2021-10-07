@@ -60,11 +60,12 @@ router.post('/files/:id',auth,upload.single('userFile'), async (req,res)=>{
  
         req.user.subjects[subjI].subject.chapters[chapI].files=await req.user.subjects[subjI].subject.chapters[chapI].files.concat({
          name:req.body.documentName,
-         data: fs.readFileSync(path.join(__dirname + '../../uploads/' + req.file.filename)),
-         contentType: 'application/pdf'
+         location:( req.file.filename),
+        
         })
         await req.user.save()
-         res.json({status:true,msg:"succesfully uploaded",data:req.body})
+        res.redirect('/editChapter/'+subjI+","+chapI)
+        //  res.json({status:true,msg:"succesfully uploaded",data:req.body})
     }catch(e){
         console.log(e)
         res.status(401).send(e)

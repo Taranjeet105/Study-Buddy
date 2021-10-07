@@ -96,6 +96,17 @@ router.get('/filesofchapter/:id',auth, (req, res) => {
         let chapI=parseInt(indices[1])
         console.log(req.user.subjects[subjI].subject.chapters[chapI].files)
         let files=req.user.subjects[subjI].subject.chapters[chapI].files
-    res.render('showFiles',{files:files})
+    res.render('testing',{files:files})
 });
+
+
+router.get('/test/:id',auth,(req,res)=>{
+    let indices=req.params.id.split(',')
+    let subjI=parseInt(indices[0])
+    let chapI=parseInt(indices[1])
+    let fileI=parseInt(indices[2])
+    let location=req.user.subjects[subjI].subject.chapters[chapI].files[fileI].location
+    res.render('testing',{userInfo:req.user,location:location,subjectNum:subjI,chapterNum:chapI,fileNum:fileI})
+})
+
 module.exports=router
