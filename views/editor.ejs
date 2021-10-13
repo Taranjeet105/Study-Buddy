@@ -106,7 +106,7 @@
         console.log(typeof code)
         let subI='<%-subjectNum%>'
         let chapI='<%-chapterNum%>' 
-        let url='https://studdy-buddyy.herokuapp.com/saveEditorData/'+subI+','+chapI  // '<%-subjectNum%>' '<%-chapterNum%>'
+        let url='http://studdy-buddyy.herokuapp.com/saveEditorData/'+subI+','+chapI  // '<%-subjectNum%>' '<%-chapterNum%>'
         fetch(url,{
             method:"post",
             body:JSON.stringify(code),
