@@ -4,6 +4,32 @@ const auth=require('../middleware/auth')
 app=express()
 app.use(express.urlencoded({extended:false}))
 
+router.post('/saveEditorData/:id',auth, async(req,res)=>{
+
+    try{
+        let editorFileIndices=req.params.id.split(",")
+        let subjI=editorFileIndices[0]
+        let chapI=editorFileIndices[1]
+      
+        console.log(req.body)
+        req.user.subjects[subjI].subject.chapters[chapI].editorFiles=await req.user.subjects[subjI].subject.chapters[chapI].editorFiles.concat({
+            name:"testing",
+            content:JSON.stringify(req.body)
+
+        })
+        await req.user.save()
+        res.json({message:"success"})
+    }catch(e){
+        console.log(e)
+        res.json({message:"error"})
+       
+    }
+
+    
+})
+
+
+
 router.get('/chapters/:id',auth,async (req,res)=>{
     try{
    
@@ -38,23 +64,34 @@ router.get('/editChapter/:id',auth,(req,res)=>{
         let chapterToEdit=req.params.id.split(",")
         console.log(chapterToEdit[0])
         console.log(chapterToEdit[1])
-    res.render('editor',{userInfo:req.user,subjectNum:chapterToEdit[0],chapterNum:chapterToEdit[1]})
+        let editorFile={
+            "time" : 1550476186479,
+            "blocks" : [
+            {
+            "type" : "paragraph",
+            "data" : {
+            "text" : ""
+            }
+            },
+            {
+            "type" : "header",
+            "data" : {
+            "text" : "" }
+            },
+            {
+            "type" : "paragraph",
+            "data" : {
+            "text" : "So what do we have?"
+            }
+            }
+            ],
+            "version" : "2.18.0"
+            }
+        console.log("editChapter")
+    res.render('editor',{userInfo:req.user,editorFile:
+       JSON.stringify(editorFile) ,subjectNum:chapterToEdit[0],chapterNum:chapterToEdit[1]})
 })
 
-router.post('/saveChapter/:id',auth, async (req,res)=>{
-    try{
-
-        let chapterToEdit=req.params.id.split(",") // subject number , chapter number
-        req.user.subjects[parseInt(chapterToEdit[0])].subject.chapters[parseInt(chapterToEdit[1])].content=JSON.stringify(req.body)
-        await req.user.save()
-
-        res.render("readChapter",{userInfo:req.user,editorHtml:req.body.data})
-    }catch(e){
-        console.log(e)
-        res.status(401).send(e)
-    }
-   
-})
 
 router.get('/deleteChapter/:id',auth,async (req,res)=>{
     try{
@@ -72,41 +109,67 @@ router.get('/deleteChapter/:id',auth,async (req,res)=>{
     }
 })
 
-router.get('/readChapter/:id',auth, async (req,res)=>{
-   
+
+
+router.get('/deletePdfFile/:id',auth, async (req,res)=>{ 
     try{
-        let chapterToRead=req.params.id.split(",") // subject number , chapter number
-        let html=await req.user.subjects[parseInt(chapterToRead[0])].subject.chapters[parseInt(chapterToRead[1])].content
-        html=JSON.parse(html)
-        res.render("readChapter",{userInfo:req.user,editorHtml:html.data})
-    }catch(e){
-        res.render('readChapter',{userInfo:req.user,editorHtml:""})
-    }
-
-})
-
-
-
-
-
-router.get('/filesofchapter/:id',auth, (req, res) => {
-
-    let indices=req.params.id.split(',')
+        let indices=req.params.id.split(',')
         let subjI=parseInt(indices[0])
         let chapI=parseInt(indices[1])
-        console.log(req.user.subjects[subjI].subject.chapters[chapI].files)
-        let files=req.user.subjects[subjI].subject.chapters[chapI].files
-    res.render('testing',{files:files})
-});
+        let fileI=parseInt(indices[2])
+        await req.user.subjects[subjI].subject.chapters[chapI].files.splice(fileI,1)
+        await req.user.save()
+        let editorFile={
+            "time" : 1550476186479,
+            "blocks" : [
+            
+            {
+            "type" : "header",
+            "data" : {
+            "text" : "" }
+            },
+            {
+                "type" : "paragraph",
+                "data" : {
+                "text" : ""
+                }
+                },
+            {
+            "type" : "paragraph",
+            "data" : {
+            "text" : "So what do we have?"
+            }
+            }
+            ],
+            "version" : "2.18.0"
+            }
+           res.render('editor',{userInfo:req.user,editorFile:
+            JSON.stringify(editorFile) ,subjectNum:subjI,chapterNum:chapI})
+        
+    }catch(e){
+        res.status(401).send(e)
+    }
+    
+})
 
-
-router.get('/test/:id',auth,(req,res)=>{
+router.get('/specificFile/:id',auth,(req,res)=>{
     let indices=req.params.id.split(',')
     let subjI=parseInt(indices[0])
     let chapI=parseInt(indices[1])
     let fileI=parseInt(indices[2])
     let location=req.user.subjects[subjI].subject.chapters[chapI].files[fileI].location
-    res.render('testing',{userInfo:req.user,location:location,subjectNum:subjI,chapterNum:chapI,fileNum:fileI})
+    res.render('showRequestedFile',{userInfo:req.user,location:location,subjectNum:subjI,chapterNum:chapI,fileNum:fileI})
 })
+
+
+router.get('/specificEditorFile/:id',auth,(req,res)=>{
+    let indices=req.params.id.split(',')
+    let subjI=parseInt(indices[0])
+    let chapI=parseInt(indices[1])
+    let fileI=parseInt(indices[2])
+    let requestedEditorFile=req.user.subjects[subjI].subject.chapters[chapI].editorFiles[fileI].content
+    res.render('editor',{userInfo:req.user,editorFile:requestedEditorFile,subjectNum:subjI,chapterNum:chapI,fileNum:fileI})
+})
+
 
 module.exports=router

@@ -13,7 +13,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
 
-    .background_img {
+    body {
       background-image: url('../backgroundImages/subjectsBackground.jpg');
       background-repeat: no-repeat;
       background-attachment: fixed;
@@ -22,12 +22,19 @@
       height: 100vh;
 
     }
+    .card{
+     
+      opacity: 0.8; width: 200px;
+    }
+    .card:hover{
+      opacity:1;
+    }
 
     .flex-class {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
-
+      /* justify-content: space-between; */
+    
     }
 
     .flex-class2 {
@@ -52,6 +59,14 @@
       color: darkorange;
       font-size: 25px;
     }
+    .parent{
+      position: absolute;
+      right: 10px;
+    }
+    .container{
+      margin-left: 0px;
+    }
+ 
   </style>
 
   <title>subject page!</title>
@@ -61,18 +76,18 @@
 
 
   <%- include('partials/navbar2') %>
-    <div class="background_img flex-class">
+    <div class=" flex-class">
 
 
       <div class="container flex-class ">
-        <div class="flex-elm1">
-          <div class="container flex-class">
+        <div class="flex-elm1" style="margin-top: 10px;">
+          <div class=" flex-class">
 
             <% let counter=0 %>
               <% let counterimg=0 %>
                 <% let imgtype=["book","study","library"] %>
                   <% userInfo.subjects.forEach(subject=>{ %>
-                    <div class="card style1 " style=" opacity: 0.8; width: 200px; " id=<%=counter.toString()%> >
+                    <div class="card style1 "  id=<%=counter.toString()%> >
                       <% let imgtoshow="https://source.unsplash.com/1600x900/?" +imgtype[counterimg]%>
                         <img src=<%=imgtoshow %> class="card-img-top" alt="...">
                         <div class="card-body">
@@ -106,26 +121,27 @@
 
         <!-- Button trigger modal -->
 
-        <div class="parent">
-          <div class="formContainer">
-            <form action="/setReminder" method="POST">
 
 
-              <div class="mb-3">
-                <label for="timedate" class="form-label style1 style1css">Set Time</label>
-                <input name="timedate" type="datetime-local" class="form-control " id="timedate">
-              </div>
+      </div>
+      <div class="parent">
+        <div class="formContainer">
+          <form action="/setReminder" method="POST">
 
-              <div class="mb-3">
-                <label for="message" class="form-label style1 style1css">Message </label>
-                <textarea name="message" type="datetime-local" class="form-control" id="message"></textarea>
-              </div>
 
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
+            <div class="mb-3">
+              <label for="timedate" class="form-label style1 style1css">Set Time</label>
+              <input name="timedate" type="datetime-local" class="form-control " id="timedate">
+            </div>
+
+            <div class="mb-3">
+              <label for="message" class="form-label style1 style1css">Message </label>
+              <textarea name="message" type="datetime-local" class="form-control" id="message"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
-
       </div>
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

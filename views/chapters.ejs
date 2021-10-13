@@ -19,6 +19,9 @@
       justify-content: space-between;
       width: 100vw;
     }
+    .chapter{
+      margin-top: 2px;
+    }
   </style>
 </head>
 
@@ -34,17 +37,18 @@
 
         <% userInfo.subjects[subjectNumber].subject.chapters.forEach(chapter=>{ %>
           <% let url="/editChapter/" %>
-            <% let url2="/readChapter/" %>
+           
               <% let url3="/deleteChapter/" %>
                 <% url=url+subjectNumber.toString()+","+chapterCount.toString()%>
-                  <% url2=url2+subjectNumber.toString()+","+chapterCount.toString()%>
+                 
                     <% url3=url3+subjectNumber.toString()+","+chapterCount.toString() %>
                       <% if(counter==0){ %>
 
-                        <div class="alert alert-primary chapter flex-class">
+                        <div class="alert alert-primary chapter flex-class" style="border: 3px solid black;
+                        border-radius: 7px;">
                           <div class="container flex-class">
                             <div>
-                              <a href=<%=url2%>>Chapter name: <%= chapter.name %></a>
+                              Chapter name: <%= chapter.name %>
                             </div>
                             <div class="buttons">
                               <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3
@@ -56,10 +60,11 @@
                         </div>
 
                         <% } else if(counter==1){ %>
-                          <div class="alert alert-secondary flex-class">
+                          <div class="alert alert-secondary chapter flex-class" style="border: 3px solid black;
+                          border-radius: 7px;">
                             <div class="container flex-class">
                               <div>
-                                <a href=<%=url2%>>Chapter name: <%= chapter.name %></a>
+                                Chapter name: <%= chapter.name %>
                               </div>
                               <div class="buttons">
                                 <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3
@@ -71,10 +76,11 @@
                           </div>
 
                           <% } else if(counter==2){ %>
-                            <div class="alert alert-success flex-class">
+                            <div class="alert alert-success chapter flex-class" style="border: 3px solid black;
+                            border-radius: 7px;">
                               <div class="container flex-class">
                                 <div>
-                                  <a href=<%=url2%>>Chapter name: <%= chapter.name %></a>
+                                  Chapter name: <%= chapter.name %>
                                 </div>
                                 <div class="buttons">
                                   <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3
@@ -86,10 +92,11 @@
                             </div>
 
                             <% } else if(counter==3){ %>
-                              <div class="alert alert-danger flex-class">
+                              <div class="alert alert-danger chapter flex-class" style="border: 3px solid black;
+                              border-radius: 7px;">
                                 <div class="container flex-class">
                                   <div>
-                                    <a href=<%=url2%>>Chapter name: <%= chapter.name %></a>
+                                    Chapter name: <%= chapter.name %>
                                   </div>
                                   <div class="buttons">
                                     <button type="button" class="btn btn-warning" class="deleteChapter"><a href=<%=url3
@@ -101,10 +108,11 @@
                               </div>
 
                               <% } else if(counter==4){ %>
-                                <div class="alert alert-warning flex-class">
+                                <div class="alert alert-warning chapter flex-class" style="border: 3px solid black;
+                                border-radius: 7px;">
                                   <div class="container flex-class">
                                     <div>
-                                      <a href=<%=url2%>>Chapter name: <%= chapter.name %></a>
+                                      Chapter name: <%= chapter.name %>
                                     </div>
                                     <div class="buttons">
                                       <button type="button" class="btn btn-warning" class="deleteChapter"><a
@@ -116,10 +124,11 @@
                                 </div>
 
                                 <% } else if(counter==5){ %>
-                                  <div class="alert alert-info flex-class">
+                                  <div class="alert alert-info chapter flex-class" style="border: 3px solid black;
+                                  border-radius: 7px;">
                                     <div class="container flex-class">
                                       <div>
-                                        <a href=<%=url2%>>Chapter name: <%= chapter.name %></a>
+                                        Chapter name: <%= chapter.name %>
                                       </div>
                                       <div class="buttons">
                                         <button type="button" class="btn btn-warning" class="deleteChapter"><a
@@ -131,10 +140,11 @@
                                   </div>
 
                                   <% } else if(counter==6){ %>
-                                    <div class="alert alert-dark flex-class">
+                                    <div class="alert alert-dark flex-class" style="border: 3px solid black;
+                                    border-radius: 7px;">
                                       <div class="container flex-class">
                                         <div>
-                                          <a href=<%=url2%>>Chapter name: <%= chapter.name %></a>
+                                          Chapter name: <%= chapter.name %>
                                         </div>
                                         <div class="buttons">
                                           <button type="button" class="btn btn-warning" class="deleteChapter"><a

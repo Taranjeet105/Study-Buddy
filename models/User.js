@@ -50,7 +50,12 @@ const userSchema=new mongoose.Schema({
                 name:String,
                 location: String,  // add location
                 // contentType: String  // remove it
-            }]
+            }],
+            editorFiles:[{
+                name:String,
+                content: String,  // add location
+                // contentType: String  // remove it
+            }],
            }]
     }
    }],
