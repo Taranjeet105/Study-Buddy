@@ -205,4 +205,72 @@ router.post('/contactUs',(req,res)=>{
 router.get('/aboutUs',(req,res)=>{
     res.render('aboutUs')
 })
+
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * 
+ charactersLength));
+   }
+   return result;
+}
+
+router.put('/forgotPassword', async(req,res)=>{
+    try{
+        var userEmail = req.body.email
+        var currentUser = await User.findOne({email:userEmail})
+        console.log(currentUser)
+        if(!currentUser)
+        {
+            throw new Error('user not found')
+        }
+
+        // generating a random token 
+        var randomToken = makeid(10)
+
+        currentUser.forgotPassword = randomToken
+        currentUser.save()
+        .then(()=>{
+            var transporter = nodemailer.createTransport({
+                service: "Gmail",
+                auth: {
+                  user: process.env.EMAIL,
+                  pass: process.env.PASSWORD,
+                 
+                },
+            });
+        
+            var mailOptions = {
+                from: "ClashOfCodes1729@gmail.com",
+                to: userEmail,
+                subject: "Forgot password",
+                html: `
+                Message : You forgot your password
+                <br/>
+                No worries !! We have you covered
+                <br/>
+                Use ${randomToken} as you OTP to reset password
+                `,
+            };
+    
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log("Email sent: " + info.response);
+                return res.json({message:"verification code sent to your email"})
+                }
+            });
+        })
+
+        
+        res.status(200).json(currentUser)
+
+    }catch(error){
+        console.log(error.message)
+    }
+})
+
 module.exports=router
