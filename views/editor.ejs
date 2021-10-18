@@ -107,16 +107,18 @@
 
     <script>
       document.getElementById('editor_files').style.display='block'
+      
       let saveBtn=document.getElementById('saveCode')
         saveBtn.addEventListener('click',function (){
+          let chapName=prompt("Enter chapter Name")
         editor.save().then(code=>{
         console.log(typeof code)
         let subI='<%-subjectNum%>'
         let chapI='<%-chapterNum%>' 
-        let url='http://localhost:3000/saveEditorData/'+subI+','+chapI  // '<%-subjectNum%>' '<%-chapterNum%>'
+        let url='https://studdy-buddyy.herokuapp.com/saveEditorData/'+subI+','+chapI  // '<%-subjectNum%>' '<%-chapterNum%>'
         fetch(url,{
             method:"post",
-            body:JSON.stringify(code),
+            body:JSON.stringify({name:chapName,code:code}),
             headers:{
                 'Content-Type':'application/json'
             }

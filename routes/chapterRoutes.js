@@ -13,9 +13,8 @@ router.post('/saveEditorData/:id',auth, async(req,res)=>{
       
         console.log(req.body)
         req.user.subjects[subjI].subject.chapters[chapI].editorFiles=await req.user.subjects[subjI].subject.chapters[chapI].editorFiles.concat({
-            name:"testing",
-            content:JSON.stringify(req.body)
-
+            name:req.body.name,
+            content:JSON.stringify(req.body.code)
         })
         await req.user.save()
         res.json({message:"success"})
