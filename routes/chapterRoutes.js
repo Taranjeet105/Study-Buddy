@@ -29,6 +29,22 @@ router.post('/saveEditorData/:id',auth, async(req,res)=>{
 })
 
 
+router.post('/updateEditorData/:id',auth,async (req,res)=>{
+    try{
+        let indices=req.params.id.split(',')
+        let subjI=parseInt(indices[0])
+        let chapI=parseInt(indices[1])
+        let fileI=parseInt(indices[2])
+        console.log(req.body)
+       req.user.subjects[subjI].subject.chapters[chapI].editorFiles[fileI].content= JSON.stringify(req.body)
+        await req.user.save()
+        res.json({message:"success"})
+    }catch(e){
+        res.status(401).send(e)
+        res.json({message:"fail"})
+    }
+    })
+
 
 router.get('/chapters/:id',auth,async (req,res)=>{
     try{
@@ -89,7 +105,7 @@ router.get('/editChapter/:id',auth,(req,res)=>{
             }
         console.log("editChapter")
     res.render('editor',{userInfo:req.user,editorFile:
-       JSON.stringify(editorFile) ,subjectNum:chapterToEdit[0],chapterNum:chapterToEdit[1]})
+       JSON.stringify(editorFile) ,subjectNum:chapterToEdit[0],chapterNum:chapterToEdit[1],fileNumber:0})
 })
 
 
@@ -144,7 +160,7 @@ router.get('/deletePdfFile/:id',auth, async (req,res)=>{
             "version" : "2.18.0"
             }
            res.render('editor',{userInfo:req.user,editorFile:
-            JSON.stringify(editorFile) ,subjectNum:subjI,chapterNum:chapI})
+            JSON.stringify(editorFile) ,subjectNum:subjI,chapterNum:chapI,fileNumber:fileI})
         
     }catch(e){
         res.status(401).send(e)
@@ -158,7 +174,7 @@ router.get('/specificFile/:id',auth,(req,res)=>{
     let chapI=parseInt(indices[1])
     let fileI=parseInt(indices[2])
     let location=req.user.subjects[subjI].subject.chapters[chapI].files[fileI].location
-    res.render('showRequestedFile',{userInfo:req.user,location:location,subjectNum:subjI,chapterNum:chapI,fileNum:fileI})
+    res.render('showRequestedFile',{userInfo:req.user,location:location,subjectNum:subjI,chapterNum:chapI,fileNumber:fileI})
 })
 
 
@@ -168,7 +184,7 @@ router.get('/specificEditorFile/:id',auth,(req,res)=>{
     let chapI=parseInt(indices[1])
     let fileI=parseInt(indices[2])
     let requestedEditorFile=req.user.subjects[subjI].subject.chapters[chapI].editorFiles[fileI].content
-    res.render('editor',{userInfo:req.user,editorFile:requestedEditorFile,subjectNum:subjI,chapterNum:chapI,fileNum:fileI})
+    res.render('editor',{userInfo:req.user,editorFile:requestedEditorFile,subjectNum:subjI,chapterNum:chapI,fileNumber:fileI})
 })
 
 

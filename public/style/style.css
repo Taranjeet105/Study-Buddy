@@ -33,8 +33,9 @@
   }
 #editorjs{
   background-color: darkgray;
-    border: 1px solid black;
-    border-radius: 6px;
+  border: 2px solid black;
+  border-radius: 14px;
     width: 50rem;
     padding: 1rem;
 }
+
