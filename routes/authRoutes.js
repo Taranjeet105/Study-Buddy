@@ -217,6 +217,10 @@ function makeid(length) {
    return result;
 }
 
+router.get('/forgotPassword',(req,res)=>{
+    res.render('forgotPassword')
+})
+
 router.put('/forgotPassword', async(req,res)=>{
     try{
         var userEmail = req.body.email
@@ -266,10 +270,48 @@ router.put('/forgotPassword', async(req,res)=>{
         })
 
         
-        res.status(200).json(currentUser)
+        res.status(200).json({status:true , message:'Check your mail for OTP'})
 
     }catch(error){
         console.log(error.message)
+    }
+})
+
+router.get('/resetPassword',(req,res)=>{
+    res.render('resetPassword')
+})
+
+router.put('/resetPassword',async(req,res)=>{
+    try{
+        var userEmail = req.body.email
+        var userOTP =  req.body.otp
+        var newPassword = req.body.newPassword
+        var currentUser = await User.findOne({email:userEmail})
+
+        if(!currentUser)
+        {
+            throw new Error('No user found')
+        }
+
+        if(!userOTP || userOTP == undefined ||  userOTP != currentUser.forgotPassword)
+        {
+            throw new Error('Invalid OTP');
+        }
+
+        if(!newPassword || newPassword.length == 0)
+        {
+            throw new Error('Please provide a valid password')
+        }
+
+        currentUser.password = newPassword
+        var savedUser = await currentUser.save();
+        
+        res.status(200).json({status:true , message:"Password updated successfully"})
+        
+
+    }catch(error){
+        // console.log(error.message)
+        return res.status(400).json({status:false, message:error.message})
     }
 })
 
