@@ -247,7 +247,7 @@ router.put('/forgotPassword', async(req,res)=>{
             });
         
             var mailOptions = {
-                from: "ClashOfCodes1729@gmail.com",
+                from: "shantys502@gmail.com",
                 to: userEmail,
                 subject: "Forgot password",
                 html: `
@@ -255,7 +255,7 @@ router.put('/forgotPassword', async(req,res)=>{
                 <br/>
                 No worries !! We have you covered
                 <br/>
-                Use ${randomToken} as you OTP to reset password
+                <p>Use ${randomToken} as you OTP to reset password</p>
                 `,
             };
     
