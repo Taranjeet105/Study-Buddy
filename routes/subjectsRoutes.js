@@ -73,7 +73,57 @@ router.post('/files/:id',auth,upload.single('userFile'), async (req,res)=>{
    
 })
 
+router.get('/delete_PDF_file/:id',auth,async (req,res)=>{
+    try{
 
+        let indices=req.params.id.split(',')
+        let subjI=parseInt(indices[0])
+        let chapI=parseInt(indices[1])
+        let fileI=parseInt(indices[2])
+        console.log(subjI)
+        console.log(chapI)
+        console.log(fileI)
+        let loc=req.user.subjects[subjI].subject.chapters[chapI].files[fileI].location
+
+    let filePath = path.join(__dirname,'../uploads') ////////////////////////
+    console.log(filePath)
+    fs.unlinkSync(filePath+"/"+loc);
+    let editorFile={
+        "time" : 1550476186479,
+        "blocks" : [
+        
+        {
+        "type" : "header",
+        "data" : {
+        "text" : "" }
+        },
+        {
+            "type" : "paragraph",
+            "data" : {
+            "text" : ""
+            }
+            },
+        {
+        "type" : "paragraph",
+        "data" : {
+        "text" : "So what do we have?"
+        }
+        }
+        ],
+        "version" : "2.18.0"
+        }
+        
+        await req.user.subjects[subjI].subject.chapters[chapI].files.splice(fileI,1)
+        await req.user.save()
+
+       res.render('editor',{userInfo:req.user,editorFile:
+        JSON.stringify(editorFile) ,subjectNum:subjI,chapterNum:chapI,fileNumber:fileI})
+    
+    }catch(e){
+        res.status(401).send(e)
+    }
+    
+})
 
 
 ///////////////////////////

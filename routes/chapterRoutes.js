@@ -102,7 +102,7 @@ router.get('/editChapter/:id',auth,(req,res)=>{
             ],
             "version" : "2.18.0"
             }
-        console.log("editChapter")
+        
     res.render('editor',{userInfo:req.user,editorFile:
        JSON.stringify(editorFile) ,subjectNum:chapterToEdit[0],chapterNum:chapterToEdit[1],fileNumber:0})
 })
@@ -124,31 +124,31 @@ router.get('/deleteChapter/:id',auth,async (req,res)=>{
     }
 })
 
-
-
-router.get('/deletePdfFile/:id',auth, async (req,res)=>{ 
+router.get('/delete_Editor_File/:id',auth,async (req,res)=>{
     try{
-        let indices=req.params.id.split(',')
-        let subjI=parseInt(indices[0])
+        let indices=req.params.id.split(",")
+        let subI=parseInt(indices[0])
         let chapI=parseInt(indices[1])
         let fileI=parseInt(indices[2])
-        await req.user.subjects[subjI].subject.chapters[chapI].files.splice(fileI,1)
+        console.log(subI)
+        console.log(chapI)
+        console.log(fileI)
+        await req.user.subjects[subI].subject.chapters[chapI].editorFiles.splice(fileI,1)
         await req.user.save()
         let editorFile={
             "time" : 1550476186479,
             "blocks" : [
-            
+            {
+            "type" : "paragraph",
+            "data" : {
+            "text" : ""
+            }
+            },
             {
             "type" : "header",
             "data" : {
             "text" : "" }
             },
-            {
-                "type" : "paragraph",
-                "data" : {
-                "text" : ""
-                }
-                },
             {
             "type" : "paragraph",
             "data" : {
@@ -158,14 +158,17 @@ router.get('/deletePdfFile/:id',auth, async (req,res)=>{
             ],
             "version" : "2.18.0"
             }
-           res.render('editor',{userInfo:req.user,editorFile:
-            JSON.stringify(editorFile) ,subjectNum:subjI,chapterNum:chapI,fileNumber:fileI})
-        
+        console.log("editChapter")
+    res.render('editor',{userInfo:req.user,editorFile:
+       JSON.stringify(editorFile) ,subjectNum:subI,chapterNum:chapI,fileNumber:fileI})
+
     }catch(e){
+        console.log(e)
         res.status(401).send(e)
     }
-    
 })
+
+
 
 router.get('/specificFile/:id',auth,(req,res)=>{
     let indices=req.params.id.split(',')

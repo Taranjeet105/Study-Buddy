@@ -43,9 +43,6 @@ const userSchema=new mongoose.Schema({
             name:{
                 type:String,
             },
-            content:{
-                type:String
-            },
             files:[{
                 name:String,
                 location: String,  // add location
