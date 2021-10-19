@@ -275,7 +275,7 @@
     document.getElementById("myform").onsubmit = (e) => {
 
       e.preventDefault()
-      let url = ("https://studdy-buddyy.herokuapp.com/SignIn")
+      let url = ("http://localhost:3000/SignIn")
       let data = new URLSearchParams()
 
       for (const pair of new FormData(e.target)) {
