@@ -9,13 +9,13 @@ app=express()
 app.use(express.urlencoded({extended:false}))
 
 router.get('/subjects',auth,(req,res)=>{   // auth is a middleware which verfies if user is authenticated or not
-    console.log("subjects")
+   
     res.render('subjects',{userInfo:req.user})
    })
 
 
    router.post('/addSubject',auth,async (req,res)=>{
-    console.log("addSubject")
+
     try{
        
        req.user.subjects= await req.user.subjects.concat({
@@ -32,26 +32,7 @@ router.get('/subjects',auth,(req,res)=>{   // auth is a middleware which verfies
     }     
 })
 
-/////////////////////--------------testing-----------------/////////////
 
-
-// Step 7 - the GET request handler that provides the HTML UI
- 
-// router.get('/testing/:id',auth, (req, res) => {
-
-//     // console.log(req.user)
-//     // res.send("Testing")
-//     let indices=req.params.id.split(',')
-//         let subjI=parseInt(indices[0])
-//         let chapI=parseInt(indices[1])
-//         console.log(req.user.subjects[subjI].subject.chapters[chapI].files)
-//         let files=req.user.subjects[subjI].subject.chapters[chapI].files
-//         // res.send("Testing")
-//     res.render('testing',{files:files})
-// });
-
-
-/////////////////----------------------------------------//////////////
 router.post('/files/:id',auth,upload.single('userFile'), async (req,res)=>{
     try{
         let indices=req.params.id.split(',')
@@ -80,13 +61,10 @@ router.get('/delete_PDF_file/:id',auth,async (req,res)=>{
         let subjI=parseInt(indices[0])
         let chapI=parseInt(indices[1])
         let fileI=parseInt(indices[2])
-        console.log(subjI)
-        console.log(chapI)
-        console.log(fileI)
         let loc=req.user.subjects[subjI].subject.chapters[chapI].files[fileI].location
 
     let filePath = path.join(__dirname,'../uploads') ////////////////////////
-    console.log(filePath)
+   
     fs.unlinkSync(filePath+"/"+loc);
     let editorFile={
         "time" : 1550476186479,
@@ -116,8 +94,7 @@ router.get('/delete_PDF_file/:id',auth,async (req,res)=>{
         await req.user.subjects[subjI].subject.chapters[chapI].files.splice(fileI,1)
         await req.user.save()
 
-       res.render('editor',{userInfo:req.user,editorFile:
-        JSON.stringify(editorFile) ,subjectNum:subjI,chapterNum:chapI,fileNumber:fileI})
+       res.redirect('/editChapter/'+subjI+','+chapI)
     
     }catch(e){
         res.status(401).send(e)
@@ -126,7 +103,6 @@ router.get('/delete_PDF_file/:id',auth,async (req,res)=>{
 })
 
 
-///////////////////////////
 
 router.get('/deleteSubject/:id',auth,async (req,res)=>{
     try{

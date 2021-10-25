@@ -11,7 +11,7 @@ router.post('/saveEditorData/:id',auth, async(req,res)=>{
         let subjI=editorFileIndices[0]
         let chapI=editorFileIndices[1]
       
-        console.log(req.body)
+        
         req.user.subjects[subjI].subject.chapters[chapI].editorFiles=await req.user.subjects[subjI].subject.chapters[chapI].editorFiles.concat({
             name:req.body.name,
             content:JSON.stringify(req.body.code)
@@ -34,7 +34,7 @@ router.post('/updateEditorData/:id',auth,async (req,res)=>{
         let subjI=parseInt(indices[0])
         let chapI=parseInt(indices[1])
         let fileI=parseInt(indices[2])
-        console.log(req.body)
+       
        req.user.subjects[subjI].subject.chapters[chapI].editorFiles[fileI].content= JSON.stringify(req.body)
         await req.user.save()
         res.json({message:"success"})
@@ -60,7 +60,7 @@ router.post('/addChapter/:id',auth,async (req,res)=>{
     try{
        
         let subjectId=parseInt(req.params.id)
-        console.log(req.user.subjects[subjectId])
+       
         req.user.subjects[subjectId].subject.chapters=await req.user.subjects[subjectId].subject.chapters.concat({
             name:req.body.chapter_name,
             content:""
@@ -77,15 +77,14 @@ router.post('/addChapter/:id',auth,async (req,res)=>{
 router.get('/editChapter/:id',auth,(req,res)=>{
        
         let chapterToEdit=req.params.id.split(",")
-        console.log(chapterToEdit[0])
-        console.log(chapterToEdit[1])
+      
         let editorFile={
             "time" : 1550476186479,
             "blocks" : [
             {
             "type" : "paragraph",
             "data" : {
-            "text" : ""
+            "text" : "Type Here"
             }
             },
             {
@@ -96,7 +95,7 @@ router.get('/editChapter/:id',auth,(req,res)=>{
             {
             "type" : "paragraph",
             "data" : {
-            "text" : "So what do we have?"
+            "text" : ""
             }
             }
             ],
@@ -113,8 +112,7 @@ router.get('/deleteChapter/:id',auth,async (req,res)=>{
         let chapterToDelete=req.params.id.split(",")
         let subI=parseInt(chapterToDelete[0])
         let chapI=parseInt(chapterToDelete[1])
-        console.log(subI)
-        console.log(chapI)
+
         await req.user.subjects[subI].subject.chapters.splice(chapI,1)
         await req.user.save()
         res.render('chapters',{userInfo:req.user,subjectNumber:subI})
@@ -130,9 +128,7 @@ router.get('/delete_Editor_File/:id',auth,async (req,res)=>{
         let subI=parseInt(indices[0])
         let chapI=parseInt(indices[1])
         let fileI=parseInt(indices[2])
-        console.log(subI)
-        console.log(chapI)
-        console.log(fileI)
+
         await req.user.subjects[subI].subject.chapters[chapI].editorFiles.splice(fileI,1)
         await req.user.save()
         let editorFile={
@@ -152,16 +148,14 @@ router.get('/delete_Editor_File/:id',auth,async (req,res)=>{
             {
             "type" : "paragraph",
             "data" : {
-            "text" : "So what do we have?"
+            "text" : ""
             }
             }
             ],
             "version" : "2.18.0"
             }
-        console.log("editChapter")
-    res.render('editor',{userInfo:req.user,editorFile:
-       JSON.stringify(editorFile) ,subjectNum:subI,chapterNum:chapI,fileNumber:fileI})
-
+        
+        res.redirect('/editChapter/'+subI+','+chapI)
     }catch(e){
         console.log(e)
         res.status(401).send(e)

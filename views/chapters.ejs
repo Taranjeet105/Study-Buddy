@@ -7,11 +7,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../style/style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
   <title>chapters</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Oswald:wght@300&family=Source+Sans+Pro:ital,wght@0,200;0,400;1,200&display=swap');
+  </style>
+  <style>
+    
+    body {
+      background-image: url('../backgroundImages/chaptersB.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+      width: 100vw;
+      height: 100vh;
+
+    }
 
     .flex-class {
       display: flex;
@@ -55,9 +69,9 @@
                               Chapter name: <%= chapter.name %>
                             </div>
                             <div class="buttons">
-                              <button type="button" class="btn btn-dark" class="deleteChapter"><a href=<%=url3
+                              <button type="button" onclick="return confirm('Do yo want to delete')" class="btn btn-danger" class="deleteChapter"><a href=<%=url3
                                   %>>Delete</a></button>
-                              <button type="button" class="btn btn-dark" class="editChapter"><a href=<%=url
+                              <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url
                                   %>>Open</a></button>
                             </div>
                           </div>
@@ -71,9 +85,9 @@
                                 Chapter name: <%= chapter.name %>
                               </div>
                               <div class="buttons">
-                                <button type="button" class="btn btn-dark" class="deleteChapter"><a href=<%=url3
+                                <button type="button" class="btn btn-danger" class="deleteChapter"><a href=<%=url3
                                     %>>Delete</a></button>
-                                <button type="button" class="btn btn-dark" class="editChapter"><a href=<%=url
+                                <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url
                                     %>>Open</a></button>
                               </div>
                             </div>
@@ -87,9 +101,9 @@
                                   Chapter name: <%= chapter.name %>
                                 </div>
                                 <div class="buttons">
-                                  <button type="button" class="btn btn-dark" class="deleteChapter"><a href=<%=url3
+                                  <button type="button" class="btn btn-danger" class="deleteChapter"><a href=<%=url3
                                       %>>Delete</a></button>
-                                  <button type="button" class="btn btn-dark" class="editChapter"><a href=<%=url
+                                  <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url
                                       %>>Open</a></button>
                                 </div>
                               </div>
@@ -105,7 +119,7 @@
                                   <div class="buttons">
                                     <button type="button" class="btn btn-dark" class="deleteChapter"><a href=<%=url3
                                         %>>Delete</a></button>
-                                    <button type="button" class="btn btn-dark" class="editChapter"><a href=<%=url
+                                    <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url
                                         %>>Open</a></button>
                                   </div>
                                 </div>
@@ -119,9 +133,9 @@
                                       Chapter name: <%= chapter.name %>
                                     </div>
                                     <div class="buttons">
-                                      <button type="button" class="btn btn-dark" class="deleteChapter"><a
+                                      <button type="button" class="btn btn-danger" class="deleteChapter"><a
                                           href=<%=url3 %>>Delete</a></button>
-                                      <button type="button" class="btn btn-dark" class="editChapter"><a href=<%=url
+                                      <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url
                                           %>>Open</a></button>
                                     </div>
                                   </div>
@@ -135,9 +149,9 @@
                                         Chapter name: <%= chapter.name %>
                                       </div>
                                       <div class="buttons">
-                                        <button type="button" class="btn btn-dark" class="deleteChapter"><a
+                                        <button type="button" class="btn btn-danger" class="deleteChapter"><a
                                             href=<%=url3 %>>Delete</a></button>
-                                        <button type="button" class="btn btn-dark" class="editChapter"><a href=<%=url
+                                        <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url
                                             %>>Open</a></button>
                                       </div>
                                     </div>
@@ -151,9 +165,9 @@
                                           Chapter name: <%= chapter.name %>
                                         </div>
                                         <div class="buttons">
-                                          <button type="button" class="btn btn-dark" class="deleteChapter"><a
+                                          <button type="button" class="btn btn-danger" class="deleteChapter"><a
                                               href=<%=url3 %>>Delete</a></button>
-                                          <button type="button" class="btn btn-dark" class="editChapter"><a href=<%=url
+                                          <button type="button" class="btn btn-info" class="editChapter"><a href=<%=url
                                               %>">Open</a></button>
                                         </div>
                                       </div>
@@ -167,10 +181,7 @@
 
                                             <!-- </div> -->
 
-                                            <button type="button" class="btn btn-primary add-subject"
-                                              data-bs-toggle="modal" data-bs-target="#addChapterModal">
-                                              Add Chapter
-                                            </button>
+                                            
 
                                             <!-- Modal -->
                                             <div class="modal fade" id="addChapterModal" tabindex="-1"
@@ -207,7 +218,9 @@
                                               </div>
                                             </div>
 
-
+                                            <script>
+                                              document.getElementById('plusChapter').style.display = "block"
+                                            </script>
 
                                             <!-- Option 1: Bootstrap Bundle with Popper -->
                                             <script

@@ -7,19 +7,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../style/style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;500&family=Concert+One&family=Oswald:wght@300&family=Source+Sans+Pro:ital,wght@0,200;0,400;1,200&display=swap');
+    </style>
   <style>
+
     body {
-      background-image: url('https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGxlYXJuaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80');
+      background-image: url('../backgroundImages/chaptersBackground.jpg');
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: 100% 100%;
       width: 100vw;
       height: 100vh;
+     
+    }
+    h1{
+      font-family: 'Cabin', sans-serif;
+font-family: 'Concert One', cursive;
+font-family: 'Oswald', sans-serif;
+font-family: 'Source Sans Pro', sans-serif;
+      font-size: 80px;
+      margin-left: 30px;
+    }
+    p{
+      font-family: 'Cabin', sans-serif;
+font-family: 'Concert One', cursive;
+font-family: 'Oswald', sans-serif;
+font-family: 'Source Sans Pro', sans-serif;
+      margin-left: 30px; 
+    }
+    a{
+      text-decoration: none;
+      color: black;
+    }
 
-
+    .btn{
+      margin-left: 30px;
+    }
+    .homepage{
+      margin-top: 30px;
     }
   </style>
 
@@ -28,9 +58,13 @@
 
 <body>
   <%- include('partials/navbar2') %>
-
-
-
+    <div class="homepage">
+      <h1>Documents that <br> get results</h1>
+      
+      <p>  Organize your study set plans and chase your dreams</p>
+      <br>
+      <button type="button" class="btn btn-success"> <a href="/subjects"> GET STARTED</a></button>
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

@@ -32,10 +32,13 @@
     padding: 1rem;
   }
 #editorjs{
-  background-color: darkgray;
+  margin-top: 5px;
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
   border: 2px solid black;
   border-radius: 14px;
     width: 50rem;
     padding: 1rem;
+    color: white
 }
+
 

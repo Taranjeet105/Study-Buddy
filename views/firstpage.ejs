@@ -110,7 +110,7 @@
     }
 
     .background_img {
-      background-image: url('../backgroundImages/firstpageBackground.jpg');
+      background-image: url('../backgroundImages/firstPageB.jpg');
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: 100% 100%;
@@ -283,7 +283,7 @@
       let data = new URLSearchParams()
 
       for (const pair of new FormData(e.target)) {
-        console.log(pair[0], pair[1])
+       
         data.append(pair[0], pair[1])
       }
       fetch(url, {
@@ -292,7 +292,7 @@
 
       }).then(res => res.json())
         .then(result => {
-          console.log(result)
+         
           if (result.status == true) {
             alert(result.msg)
             location.reload()

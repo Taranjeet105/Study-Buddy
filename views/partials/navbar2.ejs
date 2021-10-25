@@ -1,5 +1,12 @@
+<style>
+  .nav-link{
+  font-family: 'Concert One', cursive;
+}
 
-    <nav class="navbar navbar-expand-lg navbar-dark  bg-dark " style="border: 2px solid white; border-radius: 10px;">
+
+</style>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark  bg-dark " style="border: 2px solid; opacity: 0.8; border-radius: 10px;">
         <div class="container-fluid">
           <a class="navbar-brand title" href="#">Study Buddy</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,11 +15,12 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/homepage">Home</a>
+                <a class="nav-link "  aria-current="page" href="/homepage">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/subjects">Subjects</a>
+                <a class="nav-link"   href="/subjects">Subjects</a>
               </li>
+
             </ul>
 
 
@@ -32,7 +40,14 @@
                 +
                </button>
             </span>
-
+            
+            <span id="plusChapter" style="display: none; margin-right: 5px;">
+              <button type="button" class="btn btn-primary add-subject"
+              data-bs-toggle="modal" data-bs-target="#addChapterModal">
+              +
+            </button>
+            </span>
+           
             
             <!-- Logout dropdown -->
           <div class="btn-group">
@@ -48,6 +63,8 @@
           </div>
         </div>
       </nav>
+
+
    
    
    

@@ -34,18 +34,10 @@ app.use(express.static(uploads))
 app.use(cors())
 app.set('view engine','ejs')
 
-app.get('/test',(req,res)=>{
-    res.render('test.ejs')
-})
-
-
-
 
 app.use(authRoutes)
 app.use(chapterRoutes)
 app.use(subjectRoutes)
-
-
 
 mongoose.connect(mongoUrl,{
     useNewUrlParser:true,

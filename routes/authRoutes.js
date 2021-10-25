@@ -225,7 +225,7 @@ router.put('/forgotPassword', async(req,res)=>{
     try{
         var userEmail = req.body.email
         var currentUser = await User.findOne({email:userEmail})
-        console.log(currentUser)
+       
         if(!currentUser)
         {
             throw new Error('user not found')
@@ -310,7 +310,7 @@ router.put('/resetPassword',async(req,res)=>{
         
 
     }catch(error){
-        // console.log(error.message)
+       
         return res.status(400).json({status:false, message:error.message})
     }
 })

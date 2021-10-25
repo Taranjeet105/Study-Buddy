@@ -9,7 +9,9 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;500&family=Concert+One&family=Oswald:wght@300&family=Roboto:ital,wght@1,500&family=Source+Sans+Pro:ital,wght@0,200;0,400;1,200&display=swap');
+      </style>
   <style>
     body {
       background-image: url('../backgroundImages/contactUsBackground.jpg');
@@ -18,7 +20,7 @@
       background-size: 100% 100%;
       width: 100vw;
       height: 100vh;
-
+      font-family: 'Cabin', sans-serif;
     }
 
 
@@ -31,7 +33,8 @@
     }
 
     .white-color {
-      color: white;
+      color: black;
+      
     }
 
     /* .form-container{
@@ -124,7 +127,7 @@
   <script>
     document.getElementById("myform").onsubmit = (e) => {
       e.preventDefault()
-      console.log(e.target)
+      
       let url = "https://studdy-buddyy.herokuapp.com/contactUs"
       let data = new URLSearchParams()
 
@@ -139,7 +142,7 @@
       }).then(res => res.json())
         .then(result => {
 
-          console.log(result)
+         
           if (result.success == true) {
             document.getElementById("messageStatus").style.display = "block";
 
