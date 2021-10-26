@@ -46,7 +46,8 @@
         .flex-class {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-around;
+      justify-content: space-evenly;
+      
       
     }
 
@@ -57,6 +58,8 @@
     .card{
       margin-top: 5px;
     }
+
+
 
   </style>
   <!-- Bootstrap CSS -->
@@ -98,7 +101,7 @@
   </div>
 
 
-  <div class="container flex-class">
+  <div class="container flex-class" style="margin-left: 0px;">
 
     <div class="editorContainer">
       <div id="editorjs"></div>
@@ -136,7 +139,7 @@
        
         let subI='<%-subjectNum%>'
         let chapI='<%-chapterNum%>' 
-        let url='http://localhost:3000/saveEditorData/'+subI+','+chapI  // '<%-subjectNum%>' '<%-chapterNum%>'
+        let url='https://studdy-buddyy.herokuapp.com/saveEditorData/'+subI+','+chapI  // '<%-subjectNum%>' '<%-chapterNum%>'
         fetch(url,{
             method:"post",
             body:JSON.stringify({name:chapName,code:code}),
@@ -171,7 +174,7 @@
     let subI='<%-subjectNum%>'
     let chapI='<%-chapterNum%>' 
     let fileI='<%-fileNumber%>'
-    let url='http://localhost:3000/updateEditorData/'+subI+','+chapI+ ','+fileI  // '<%-subjectNum%>' '<%-chapterNum%>'
+    let url='https://studdy-buddyy.herokuapp.com/updateEditorData/'+subI+','+chapI+ ','+fileI  // '<%-subjectNum%>' '<%-chapterNum%>'
     fetch(url,{
         method:"post",
         body:JSON.stringify(code),

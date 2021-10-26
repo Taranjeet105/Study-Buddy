@@ -35,6 +35,7 @@
     .flex-class {
       display: flex;
       flex-wrap: wrap;
+      
       /* justify-content: space-between; */
     
     }
@@ -46,6 +47,9 @@
 
     .flex-elem2 {
       flex-basis: 200px;
+    }
+    .flex-elm1{
+      width: 90%;
     }
 
     .style1 {
@@ -63,6 +67,7 @@
     .parent{
       position: absolute;
       right: 10px;
+      width: 19%;
     }
     .container{
       margin-left: 0px;
@@ -125,6 +130,7 @@
 
 
       </div>
+
       <div class="parent">
         <div class="formContainer">
           <form action="/setReminder" method="POST">
@@ -144,6 +150,8 @@
           </form>
         </div>
       </div>
+    </div>
+
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -182,7 +190,7 @@
       </div>
 
 
-    </div>
+    
 
     <script>
       document.getElementById('plus').style.display = "block"
