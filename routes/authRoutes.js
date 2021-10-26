@@ -255,9 +255,11 @@ router.put('/forgotPassword', async(req,res)=>{
                 <br/>
                 No worries !! We have you covered
                 <br/>
-                <p>Use ${randomToken} as you OTP to reset password</p>
+                <p>Proceed to this <a target="_blank" href="https://studdy-buddyy.herokuapp.com/resetPassword/${userEmail}/${randomToken}">link</a> to reset your password</p>
                 `,
             };
+            // https://studdy-buddyy.herokuapp.com/
+            // http://localhost:3000/resetPassword
     
             transporter.sendMail(mailOptions, function (error, info) {
                 if (error) {
@@ -270,14 +272,15 @@ router.put('/forgotPassword', async(req,res)=>{
         })
 
         
-        res.status(200).json({status:true , message:'Check your mail for OTP'})
+        res.status(200).json({status:true , message:'Check your mail for reset password link'})
 
     }catch(error){
-        console.log(error.message)
+        // console.log(error.message)
+        res.status(400).json({status:false , message:error.message})
     }
 })
 
-router.get('/resetPassword',(req,res)=>{
+router.get('/resetPassword/:email/:id',(req,res)=>{
     res.render('resetPassword')
 })
 
