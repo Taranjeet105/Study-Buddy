@@ -136,7 +136,7 @@
        
         let subI='<%-subjectNum%>'
         let chapI='<%-chapterNum%>' 
-        let url='https://studdy-buddyy.herokuapp.com/saveEditorData/'+subI+','+chapI  // '<%-subjectNum%>' '<%-chapterNum%>'
+        let url='http://localhost:3000/saveEditorData/'+subI+','+chapI  // '<%-subjectNum%>' '<%-chapterNum%>'
         fetch(url,{
             method:"post",
             body:JSON.stringify({name:chapName,code:code}),
@@ -171,7 +171,7 @@
     let subI='<%-subjectNum%>'
     let chapI='<%-chapterNum%>' 
     let fileI='<%-fileNumber%>'
-    let url='https://studdy-buddyy.herokuapp.com/updateEditorData/'+subI+','+chapI+ ','+fileI  // '<%-subjectNum%>' '<%-chapterNum%>'
+    let url='http://localhost:3000/updateEditorData/'+subI+','+chapI+ ','+fileI  // '<%-subjectNum%>' '<%-chapterNum%>'
     fetch(url,{
         method:"post",
         body:JSON.stringify(code),
