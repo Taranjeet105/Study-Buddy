@@ -45,11 +45,36 @@ router.post('/files/:id',auth,upload.single('userFile'), async (req,res)=>{
         
         })
         await req.user.save()
+        let editorFile={
+            "time" : 1550476186479,
+            "blocks" : [
+            {
+            "type" : "paragraph",
+            "data" : {
+            "text" : "Type Here"
+            }
+            },
+            {
+            "type" : "header",
+            "data" : {
+            "text" : "" }
+            },
+            {
+            "type" : "paragraph",
+            "data" : {
+            "text" : ""
+            }
+            }
+            ],
+            "version" : "2.18.0"
+            }
+        res.render('editor',{userInfo:req.user,editorFile:
+            JSON.stringify(editorFile) ,subjectNum:subjI,chapterNum:chapI,fileNumber:0})
         // res.redirect('/editChapter/'+subjI+","+chapI)
-         res.json({status:true,msg:"succesfully uploaded",data:req.body})
+        //  res.json({status:true,msg:"succesfully uploaded",data:req.body})
     }catch(e){
         console.log(e)
-        res.json({status:false,msg:"error",data:req.body})
+        res.json({status:false,msg:"error"})
         // res.status(401).send(e)
     }
    
