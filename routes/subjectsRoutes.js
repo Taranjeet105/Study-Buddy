@@ -45,11 +45,12 @@ router.post('/files/:id',auth,upload.single('userFile'), async (req,res)=>{
         
         })
         await req.user.save()
-        res.redirect('/editChapter/'+subjI+","+chapI)
-        //  res.json({status:true,msg:"succesfully uploaded",data:req.body})
+        // res.redirect('/editChapter/'+subjI+","+chapI)
+         res.json({status:true,msg:"succesfully uploaded",data:req.body})
     }catch(e){
         console.log(e)
-        res.status(401).send(e)
+        res.json({status:false,msg:"error",data:req.body})
+        // res.status(401).send(e)
     }
    
 })

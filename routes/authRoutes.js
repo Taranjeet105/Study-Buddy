@@ -255,7 +255,7 @@ router.put('/forgotPassword', async(req,res)=>{
                 <br/>
                 No worries !! We have you covered
                 <br/>
-                <p>Proceed to this <a target="_blank" href="https://studdy-buddyy.herokuapp.com/resetPassword/${userEmail}/${randomToken}">link</a> to reset your password</p>
+                <p>Proceed to this <a target="_blank" href="http://localhost:3000/resetPassword/${userEmail}/${randomToken}">link</a> to reset your password</p>
                 `,
             };
             // https://studdy-buddyy.herokuapp.com/
