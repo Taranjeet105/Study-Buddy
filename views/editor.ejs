@@ -17,9 +17,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/nested-list@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@2.3.0"></script>
-  
    
   
   
@@ -33,8 +30,6 @@
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: 100% 100%;
-      width: 100vw;
-      height: 100vh;
 
     }
   i{
@@ -45,8 +40,8 @@
 }
         .flex-class {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
+      flex-wrap: nowrap;
+      justify-content: space-around;
       
       
     }
@@ -66,7 +61,6 @@
   <link rel="stylesheet" href="../style/style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-  <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
   <title>Editor</title>
 </head>
 
@@ -85,7 +79,7 @@
           <% let url='/specificEditorFile/'+subjectNum+","+chapterNum+","+editorFileNum%>
           <% let url2='/delete_Editor_File/'+subjectNum+","+chapterNum+","+editorFileNum%>
 
-          <div style=" border: 2px solid black;" class="alert alert-primary flex-class" role="alert">
+          <div  class="alert alert-primary flex-class" role="alert">
             <a style="color: white; text-decoration: none; " href=<%=url%>> <b> <i> <%=editorFile.name%></i></b></a>
             <button type="button" onclick="return confirm('Do you really want to delete?')" class="btn btn-danger"> <a style="color: white; text-decoration: none; " href=<%=url2%>>Delete</a> </button>
           </div>
@@ -101,9 +95,9 @@
   </div>
 
 
-  <div class="container flex-class" style="margin-left: 0px;">
+  <div class="container flex-class">
 
-    <div class="editorContainer">
+    <div class="editorContainer" style="width: 130rem; flex-grow: 2;">
       <div id="editorjs"></div>
       <button id="saveCode" type="button" class="btn btn-info" style="margin:3px">Save</button>
       <button id="updateCode" type="button" class="btn btn-danger" style="margin:3px">Update</button>
@@ -227,14 +221,14 @@
     </div>
 
 
-    <div class="card" style="width: 18rem;
-    border: 2px solid black;
+    <div class="card" style="
+    height: 10rem;
     border-radius: 20px;
-    height: 10rem;" >
-      <div class="card-body">
+    " >
+      <div class="card-body" style="flex-basis: min-content;">
         <h5 class="card-title">Upload PDF File</h5>
         
-        <div class="container" style="margin-left: 0px;">
+        <div class="container" >
           <% url="/files/"+subjectNum+","+chapterNum %>
           <form id="uploadFile" action=<%=url %> method="POST" enctype="multipart/form-data">
             

@@ -21,16 +21,7 @@ const editor = new EditorJS({
             }
         },
         delimiter: Delimiter,
-        
-        image: {
-            class: ImageTool,
-            config: {
-              endpoints: {
-                byFile: 'http://localhost:3000/uploadFile', // Your backend file uploader endpoint
-                byUrl: 'http://localhost:3000/fetchUrl', // Your endpoint that provides uploading by Url
-              }
-            }
-          }     
+             
     }
     
 });

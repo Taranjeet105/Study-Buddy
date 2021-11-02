@@ -11,18 +11,24 @@
       crossorigin="anonymous"
     />
    <style>
+     .flex-class{
+      display: flex;
+      justify-content: center;
+     }
       #pdf-render{
+        height: 100vh;
+        width: 55vw;
         margin-left: 18rem;
         border: 1px solid;
-        height: 52rem;
-        width: 48rem;
+        /* height: 52rem;
+        width: 48rem; */
     }
+    
 
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 750px) {
       #pdf-render{
-        margin-left: 13rem;
-        height: 52rem;
-        width: 40rem;
+        margin-left: 5rem;
+       
         border: 1px solid;
     }
   }
@@ -45,7 +51,7 @@
       </span>
     </div>
 
-    <canvas id="pdf-render"></canvas>
+    <canvas class="flex-class" id="pdf-render"></canvas>
 
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
 

@@ -84,7 +84,7 @@ router.get('/editChapter/:id',auth,(req,res)=>{
             {
             "type" : "paragraph",
             "data" : {
-            "text" : "Type Here"
+            "text" : "Ignore copy pasting large texts"
             }
             },
             {
