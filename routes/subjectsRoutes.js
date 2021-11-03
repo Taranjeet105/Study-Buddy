@@ -68,8 +68,9 @@ router.post('/files/:id',auth,upload.single('userFile'), async (req,res)=>{
             ],
             "version" : "2.18.0"
             }
-        res.render('editor',{userInfo:req.user,editorFile:
-            JSON.stringify(editorFile) ,subjectNum:subjI,chapterNum:chapI,fileNumber:0})
+        // res.render('editor',{userInfo:req.user,editorFile:
+        //     JSON.stringify(editorFile) ,subjectNum:subjI,chapterNum:chapI,fileNumber:0})
+        res.redirect('/editChapter/'+subjI+','+chapI)
        
     }catch(e){
         console.log(e)

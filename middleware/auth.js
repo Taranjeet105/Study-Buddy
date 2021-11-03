@@ -12,7 +12,7 @@ const auth = async (req,res,next)=>{
         next()
     }catch(error){
        
-        res.render('firstpage')
+        res.redirect('/')
     }
 }
 
