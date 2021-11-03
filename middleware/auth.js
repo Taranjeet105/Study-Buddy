@@ -11,9 +11,8 @@ const auth = async (req,res,next)=>{
         req.user=user
         next()
     }catch(error){
-        res.redirect('/')
-        console.log(error)
-        res.status(401).send(error)
+       
+        res.render('firstpage')
     }
 }
 

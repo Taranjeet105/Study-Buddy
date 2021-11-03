@@ -51,7 +51,7 @@ router.post('/files/:id',auth,upload.single('userFile'), async (req,res)=>{
             {
             "type" : "paragraph",
             "data" : {
-            "text" : "Type Here"
+            "text" : "ignore pasting large texts"
             }
             },
             {
@@ -88,7 +88,8 @@ router.get('/delete_PDF_file/:id',auth,async (req,res)=>{
         let chapI=parseInt(indices[1])
         let fileI=parseInt(indices[2])
         let loc=req.user.subjects[subjI].subject.chapters[chapI].files[fileI].location
-
+        req.user.subjects[subjI].subject.chapters[chapI].files.splice(fileI,1)
+        req.user.save()
     let filePath = path.join(__dirname,'../uploads') ////////////////////////
    
     fs.unlinkSync(filePath+"/"+loc);
@@ -117,8 +118,7 @@ router.get('/delete_PDF_file/:id',auth,async (req,res)=>{
         "version" : "2.18.0"
         }
         
-        await req.user.subjects[subjI].subject.chapters[chapI].files.splice(fileI,1)
-        await req.user.save()
+        
 
        res.redirect('/editChapter/'+subjI+','+chapI)
     
