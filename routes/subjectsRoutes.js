@@ -119,8 +119,8 @@ router.get('/delete_PDF_file/:id',auth,async (req,res)=>{
         }
         
         
-
-       res.redirect('/editChapter/'+subjI+','+chapI)
+        res.json({message:"file deleted successfully"})
+    //    res.redirect('/editChapter/'+subjI+','+chapI)
     
     }catch(e){
         res.status(401).send(e)
