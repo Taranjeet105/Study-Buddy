@@ -1,13 +1,18 @@
 const editor = new EditorJS({
     holderId:'editorjs',
+   
     tools:{
+        paragraph: {
+            class: Paragraph,
+            inlineToolbar:['bold','italic']
+          },
         header:{
             class:Header,
-            inlineToolbar:['link']
+            inlineToolbar:['bold','italic']
         },
         list:{
             class:List,
-            inlineToolbar:['link','bold']
+            inlineToolbar:['bold','italic']
             
         },
         embed:{
