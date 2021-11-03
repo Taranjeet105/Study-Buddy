@@ -70,12 +70,11 @@ router.post('/files/:id',auth,upload.single('userFile'), async (req,res)=>{
             }
         res.render('editor',{userInfo:req.user,editorFile:
             JSON.stringify(editorFile) ,subjectNum:subjI,chapterNum:chapI,fileNumber:0})
-        // res.redirect('/editChapter/'+subjI+","+chapI)
-        //  res.json({status:true,msg:"succesfully uploaded",data:req.body})
+       
     }catch(e){
         console.log(e)
-        res.json({status:false,msg:"error"})
-        // res.status(401).send(e)
+       res.status(401).send(e)
+       
     }
    
 })
@@ -119,8 +118,8 @@ router.get('/delete_PDF_file/:id',auth,async (req,res)=>{
         }
         
         
-        res.json({message:"file deleted successfully"})
-    //    res.redirect('/editChapter/'+subjI+','+chapI)
+
+       res.redirect('/editChapter/'+subjI+','+chapI)
     
     }catch(e){
         res.status(401).send(e)
