@@ -87,8 +87,8 @@ router.get('/delete_PDF_file/:id',auth,async (req,res)=>{
         let chapI=parseInt(indices[1])
         let fileI=parseInt(indices[2])
         let loc=req.user.subjects[subjI].subject.chapters[chapI].files[fileI].location
-        req.user.subjects[subjI].subject.chapters[chapI].files.splice(fileI,1)
-        req.user.save()
+       await req.user.subjects[subjI].subject.chapters[chapI].files.splice(fileI,1)
+       await req.user.save()
     let filePath = path.join(__dirname,'../uploads') ////////////////////////
    
     fs.unlinkSync(filePath+"/"+loc);
