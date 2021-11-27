@@ -3,15 +3,18 @@ const mongoose=require('mongoose')
 const User=mongoose.model('User')
 const nodemailer=require("nodemailer")
 const cron=require("node-cron")
+const schedule=require('node-schedule')
 const router=express.Router()
 const jwt=require('jsonwebtoken')
 const auth=require('../middleware/auth')
 const bcrypt=require('bcryptjs')
+const {buildHeap,heapify,remove,insert}=require('../middleware/heapOperations')
+let reminders=require('../middleware/map')
 app=express()
 app.use(express.urlencoded({extended:false}))
 
 router.get('/',async (req,res)=>{
-
+    
     try{
         const token=req.cookies.jwt
         const verifyUser=jwt.verify(token,process.env.SECRET_KEY)
@@ -45,6 +48,10 @@ router.get('/homepage',auth,(req,res)=>{
             gender:req.body.SignInUserGender,
             email: req.body.SignInEmail,
             password: req.body.SignInpassword,
+            remainders:[{
+                time:new Date(),
+                message:'signup date'
+            }]
          })
     
          // middleware is set between getting data and saving data in models
@@ -73,6 +80,7 @@ router.get('/homepage',auth,(req,res)=>{
  })
 
  router.post('/login', async (req,res)=>{
+     
      try{
         const verifyUser= await User.findOne({email:req.body.email})
         const isMatch= await bcrypt.compare(req.body.password,verifyUser.password)
@@ -94,6 +102,7 @@ router.get('/homepage',auth,(req,res)=>{
  })
 
 router.get('/logout',auth,async (req,res)=>{
+   
  try{
      
     req.user.tokens=req.user.tokens.filter((currToken)=>{
@@ -107,52 +116,59 @@ router.get('/logout',auth,async (req,res)=>{
  }
 })
 
+router.get('/delete/:id',auth, async(req,res)=>{
+    // let idx=parseInt(req.params.id)
+    console.log(req.params.id)
+    schedule.cancelJob(req.params.id)
+    reminders.delete(req.params.id)
+    res.redirect('/reminders')
+})
 
-router.post('/setReminder',auth,(req,res)=>{
+router.get('/reminders',auth,(req,res)=>{
+    res.render('reminders',{reminders:reminders,userInfo:req.user})
+})
 
-    let date=req.body.timedate.slice(0,10).split("-")  // year month date
-    let time=req.body.timedate.slice(11,17).split(":")  //hour minute
+router.post('/setReminder',auth,async (req,res)=>{
+
+   
+    let time=req.body.timedate     // new Date("3 3 2015 20:21:44"); format 
+    console.log(time)
     let message=req.body.message
-    let hour=time[0]
-    let minute=time[1]
-    let month=date[1]
-    let dom=date[2]
+    reminders.set(time,message)
+    schedule.scheduleJob(time,new Date(time),()=>{
+        var transporter = nodemailer.createTransport({
+            service: "Gmail",
+            auth: {
+              user: process.env.EMAIL,
+              pass: process.env.PASSWORD,
+             
+            },
+        });
     
-    var transporter = nodemailer.createTransport({
-        service: "Gmail",
-        auth: {
-          user: process.env.EMAIL,
-          pass: process.env.PASSWORD,
-         
-        },
-    });
-
-    var mailOptions = {
-        from: 'shantys502@gmail.com',
-        to: req.user.email,
-        subject: "Reminder from Study-buddy",
-        html: `
-        Message : ${message}
-        `,
-    };
-
-   cron.schedule(`${minute} ${hour} ${dom} ${month} *`,()=>{
-        
+        var mailOptions = {
+            from: 'shantys502@gmail.com',
+            to: req.user.email,
+            subject: "Reminder from Study-buddy",
+            html: `
+            Message : ${message}
+            `,
+        };
+    
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
               console.log(error);
               return res.json({success:false,message:error})
             } else {
               console.log("Email sent: " + info.response);
-            return res.json({success:true,message:"message sent"})
+              
+              reminders.delete(time);
+            return res.json({success:true,message:"message sent"});
+
             }
         })
-    },{
-        scheduled: true,
-        timezone: "Asia/Kolkata"
-      }
-
-    )
+        console.log(message)
+    })
+    
     res.redirect('/subjects')
 })
 

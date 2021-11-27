@@ -28,6 +28,7 @@ const userSchema=new mongoose.Schema({
         unique:true,
         required:true
     },
+
     forgotPassword:{
         type:String
     },
