@@ -131,11 +131,14 @@ router.get('/reminders',auth,(req,res)=>{
 router.post('/setReminder',auth,async (req,res)=>{
 
    
+    
+
     let time=req.body.timedate     // new Date("3 3 2015 20:21:44"); format 
     console.log(time)
     let message=req.body.message
     reminders.set(time,message)
-    schedule.scheduleJob(time,new Date(time),()=>{
+    
+    schedule.scheduleJob(time,new Date(time),new Date(new Date(time).toUTCString().slice(0, -4)),()=>{
         var transporter = nodemailer.createTransport({
             service: "Gmail",
             auth: {
