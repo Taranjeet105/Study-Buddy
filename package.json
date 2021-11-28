@@ -27,6 +27,7 @@
     "node-cron": "^3.0.0",
     "node-mailer": "^0.1.1",
     "node-schedule": "^2.0.0",
+    "node-schedule-tz": "^1.2.1-4",
     "nodemailer": "^6.6.5",
     "nodemon": "^2.0.13",
     "path": "^0.12.7",

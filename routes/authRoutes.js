@@ -3,7 +3,7 @@ const mongoose=require('mongoose')
 const User=mongoose.model('User')
 const nodemailer=require("nodemailer")
 const cron=require("node-cron")
-const schedule=require('node-schedule')
+const schedule=require('node-schedule-tz')
 const router=express.Router()
 const jwt=require('jsonwebtoken')
 const auth=require('../middleware/auth')
@@ -131,14 +131,13 @@ router.get('/reminders',auth,(req,res)=>{
 router.post('/setReminder',auth,async (req,res)=>{
 
    
-    function convertDateToUTC(date) { return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()); }
-
+   
     let time=req.body.timedate     // new Date("3 3 2015 20:21:44"); format 
     console.log(time)
     let message=req.body.message
     reminders.set(time,message)
     
-    schedule.scheduleJob(time,convertDateToUTC(new Date(time)),()=>{
+    schedule.scheduleJob(time,new Date(time),'Asia/Kolkata',()=>{
         var transporter = nodemailer.createTransport({
             service: "Gmail",
             auth: {
