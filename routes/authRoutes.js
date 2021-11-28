@@ -131,14 +131,14 @@ router.get('/reminders',auth,(req,res)=>{
 router.post('/setReminder',auth,async (req,res)=>{
 
    
-    
+    function convertDateToUTC(date) { return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()); }
 
     let time=req.body.timedate     // new Date("3 3 2015 20:21:44"); format 
     console.log(time)
     let message=req.body.message
     reminders.set(time,message)
     
-    schedule.scheduleJob(time,new Date(time),new Date(new Date(time).toUTCString().slice(0, -4)),()=>{
+    schedule.scheduleJob(time,convertDateToUTC(new Date(time)),()=>{
         var transporter = nodemailer.createTransport({
             service: "Gmail",
             auth: {
