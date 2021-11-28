@@ -136,8 +136,8 @@ router.post('/setReminder',auth,async (req,res)=>{
     console.log(time)
     let message=req.body.message
     reminders.set(time,message)
-    
-    schedule.scheduleJob(time,new Date(time),'Asia/Kolkata',()=>{
+    // new Date(time).toISOString()
+    schedule.scheduleJob(time,new Date(new Date(time).toISOString()),()=>{
         var transporter = nodemailer.createTransport({
             service: "Gmail",
             auth: {
