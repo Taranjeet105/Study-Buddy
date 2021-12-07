@@ -133,9 +133,7 @@
 
       <div class="parent">
         <div class="formContainer">
-          <form action="/setReminder" method="POST">
-
-
+          <form id='dateAndTime' >
             <div class="mb-3">
               <label for="timedate" class="form-label style1 style1css">Set Time</label>
               <input name="timedate" type="datetime-local" class="form-control " id="timedate">
@@ -151,6 +149,45 @@
         </div>
       </div>
     </div>
+
+
+    <script>
+        document.getElementById("dateAndTime").onsubmit=(e)=>{
+        e.preventDefault()
+        // console.log(e.target)
+        let  url=("https://studdy-buddyy.herokuapp.com/setReminder")
+        let localTime=document.getElementById('timedate').value
+        let message=document.getElementById('message').value
+        console.log(localTime)
+        let date = new Date(localTime); 
+        console.log(date.toString())
+        var now_utc =  Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
+          date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+         
+       let utcnow= new Date(now_utc);
+       console.log(utcnow)
+
+       let data={
+                setTime:now_utc,
+                localTime:localTime,
+                message:message
+                    }
+         fetch(url,{
+                    method:"post",
+                    body:JSON.stringify(data),
+                    headers: {
+                    'Content-Type': 'application/json'
+      
+                    },
+                }).then(res=>res.text())
+                .then(result=>{
+                    
+                  
+                }).catch(e=>console.log(e))
+                // location.reload()
+            }
+    </script>
+    
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
