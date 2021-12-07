@@ -137,9 +137,9 @@ router.post('/setReminder',auth,async (req,res)=>{
     console.log(time)
     console.log(localTime)
     let message=req.body.message
-    reminders.set(localTime.toString(),message)
+    reminders.set(localTime,message)
     
-    schedule.scheduleJob(localTime.toString(),new Date(time),()=>{
+    schedule.scheduleJob(localTime,new Date(time),()=>{
         var transporter = nodemailer.createTransport({
             service: "Gmail",
             auth: {
@@ -165,7 +165,7 @@ router.post('/setReminder',auth,async (req,res)=>{
             } else {
               console.log("Email sent: " + info.response);
               
-              reminders.delete(time);
+              reminders.delete(localTime);
             return res.json({success:true,message:"message sent"});
 
             }
